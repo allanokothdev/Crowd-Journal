@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dimen_5"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <RelativeLayout
+            android:layout_marginStart="40dp"
+            android:id="@+id/topicLayout"
+            android:visibility="visible"
+            android:layout_marginTop="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            app:srcCompat="@drawable/ic_whatshot_blue_24dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/topicImageView"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="@string/topic_image"
+            app:tint="@color/colorGray" />
+
+        <TextView
+            android:hint="@string/app_name"
+            android:fontFamily="@font/open_sans_semi_bold"
+            android:textColor="@color/gray"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/topicImageView"
+            android:id="@+id/topicTextView"
+            android:layout_marginStart="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileCardView"
+                app:cardCornerRadius="@dimen/padding_8"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/profileImageView"
+                    android:scaleType="centerCrop"
+                    android:layout_width="@dimen/dimen_40"
+                    android:layout_height="@dimen/dimen_40"
+                    android:contentDescription="@string/profile_image" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@id/profileCardView"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:drawableTint="@color/colorPrimary"
+                        android:drawablePadding="@dimen/dimen_5"
+                        android:text="@string/app_name"
+                        android:textColor="@color/colorBlack"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:fontFamily="@font/open_sans_semi_bold"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:hint="@string/_4_min"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/subTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"/>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:text="@string/app_values"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:layout_marginStart="4dp"
+                        android:id="@+id/subItemTextView"
+                        android:textColor="@color/colorBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_marginTop="5dp"
+                    app:cardCornerRadius="@dimen/dimen_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/cover"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            android:id="@+id/imageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:contentDescription="@string/uploaded_image" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:textIsSelectable="true"
+                    android:scrollHorizontally="true"
+                    android:singleLine="false"
+                    android:ellipsize="end"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:text="@string/app_name"
+                    android:maxLines="10"
+                    android:maxLength="500"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:id="@+id/summaryTextView"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="6dp"
+                    android:hint="@string/nairobi_kenya"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:textColor="@color/black"
+                    android:id="@+id/locationTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:visibility="visible"
+                    android:layout_marginTop="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:baselineAligned="false">
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                app:tint="@color/colorGray"
+                                android:id="@+id/commentImageView"
+                                android:layout_width="@dimen/dimen_20"
+                                android:layout_height="20dp"
+                                android:scaleType="fitCenter"
+                                android:adjustViewBounds="true"
+                                app:srcCompat="@drawable/ic_chat_bubble_outline_black_24dp"
+                                android:contentDescription="@string/comment_on_post" />
+
+                            <TextView
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/commentTextView"
+                                android:layout_marginStart="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="12.5sp"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                app:tint="@color/colorGray"
+                                android:id="@+id/likeImageView"
+                                android:layout_width="@dimen/dimen_20"
+                                android:layout_height="@dimen/dimen_20"
+                                android:scaleType="fitCenter"
+                                android:adjustViewBounds="true"
+                                app:srcCompat="@drawable/ic_favorite_border_white_24dp"
+                                android:contentDescription="@string/like_post" />
+
+                            <TextView
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/likeTextView"
+                                android:layout_marginStart="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="13sp"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                app:tint="@color/colorGray"
+                                android:id="@+id/messageImageView"
+                                android:layout_width="20dp"
+                                android:layout_height="@dimen/dimen_20"
+                                android:scaleType="fitCenter"
+                                android:adjustViewBounds="true"
+                                app:srcCompat="@drawable/ic_mail_outline_gray_24dp"
+                                android:contentDescription="@string/message_post_publisher" />
+
+                            <TextView
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/messageTextView"
+                                android:layout_marginStart="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="12.5sp"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                app:tint="@color/colorGray"
+                                android:id="@+id/shareImageView"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:scaleType="fitCenter"
+                                android:adjustViewBounds="true"
+                                app:srcCompat="@drawable/ic_share_blue_24dp"
+                                android:contentDescription="@string/share_post" />
+
+                            <TextView
+                                android:fontFamily="sans-serif-light"
+                                android:id="@+id/shareTextView"
+                                android:layout_marginStart="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="12.5sp"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+</LinearLayout>

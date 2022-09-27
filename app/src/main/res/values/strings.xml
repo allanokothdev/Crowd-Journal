@@ -1,0 +1,268 @@
+<resources>
+    <!-- Splash &amp;-->
+    <string name="app_name">Documentor</string>
+    <string name="about_vendor">&#169; 2021 Documentor Inc</string>
+    <string name="slogan_one">Amplifying Underrepresented Voices in Media</string>
+    <string name="slogan_two">Document your World</string>
+    <string name="slogan_three">We welcome you to Journal your World…</string>
+    <string name="privacypolicy">By Creating an account with Documentor, you agree to our <font color='#6698FF'> Privacy Policy</font> and <font color='#6698FF'> Terms of Service</font></string>
+    <string name="app_values">Accountability | Credibility | Objectivity</string>
+    <string name="continuewithGoogle">Continue with Google</string>
+
+    <!-- Create Profile -->
+    <string name="createuserprofile">Create User Profile</string>
+    <string name="entername">Enter your Name</string>
+
+    <string name="kenya">Kenya</string>
+    <string name="unitedstates">United States</string>
+
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+
+    <string name="file_provider" translatable="false">com.documentorworldke.android.fileprovider</string>
+    <string name="pick_single">Please select your image</string>
+
+    <plurals name="pick_multi">
+        <item quantity="one">One image selected</item>
+        <item quantity="other">%1$d images selected</item>
+    </plurals>
+    <plurals name="pick_multi_more">
+        <item quantity="one">Please select one more image…</item>
+        <item quantity="other">Please select %1$d more images…</item>
+    </plurals>
+    <string name="pick_multi_limit">You have more than %1$d images selected…</string>
+
+
+    <string name="menu_topics">Topics</string>
+    <string name="menu_posts">Crowd Journal</string>
+    <string name="menu_subscription">Subscription</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_topic">Topics</string>
+    <string name="menu_chat">Chats</string>
+    <string name="menu_history">History</string>
+    <string name="menu_notification">Notifications</string>
+    <string name="menu_bookmark">Bookmarks</string>
+    <!-- Fragment &amp;-->
+
+    <string name="title_activity_landing_page">LandingPage</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Use the default receiver. To customize a styled media receiver, you can use
+         the css and images under <project-root>/docs/cast_styled_receiver -->
+    <string name="home_title">Home</string>
+    <string name="open_content_drawer">Open the main menu</string>
+    <string name="close_content_drawer">Close the main menu</string>
+    <string name="login_already">You already have an account?  <font color='#000'> Login Instead</font></string>
+
+
+    <!-- Post Activity -->
+    <string name="post">Post</string>
+    <string name="journalyourworld">Document your World…</string>
+    <string name="posttip">Remember to…</string>
+    <string name="error">Error Posting… Try Again</string>
+    <string name="voiced">A problem shared is half solved… Let us hear you</string>
+    <string name="characterlimit">You have reached Character Limit</string>
+    <string name="like">Like</string>
+    <string name="likes">Likes</string>
+    <string name="comment">Comment</string>
+    <string name="comments">Comments</string>
+    <string name="saved">Saved</string>
+    <string name="sharevia">Share Via</string>
+    <string name="subjecthere">Subject Here</string>
+    <string name="detail">Detail</string>
+    <string name="citizen">Concerned Citizen</string>
+    <string name="voicd">Your Voice Matters.. Express It</string>
+    <string name="id">ID: </string>
+    <string name="signoutslogan">Our Shared Values Binds us Together</string>
+    <string name="rateus">Rate Us</string>
+    <string name="rateslogan">Rate your Belonging Experience</string>
+    <string name="appinfo">App Info</string>
+    <string name="founderstext">Behind the Scenes</string>
+    <string name="founderswords">Founder\'s Words</string>
+    <string name="foundersubtitle">"If you aren’t careful, the media will have you hating the people who are being oppressed and loving the people who are doing the oppressing" – Malcolm X, 1964  </string>
+
+    <string name="sponsored">Sponsored By %s </string>
+    <string name="identity">Identity: <font color='#6698FF'> %s </font></string>
+    <string name="username">/@%s</string>
+    <string name="history">History of %s</string>
+    <string name="stories">Stories \n of \n %s</string>
+    <string name="conversations">%s Conversations</string>
+    <string name="title_activity_map_view">Map</string>
+    <string name="publish_history">Publish History…</string>
+    <string name="when_did_it_happen">When did it happen?</string>
+    <string name="publish">Publish</string>
+    <string name="create_user_profile">Create User Profile</string>
+    <string name="enter_your_name">Enter your Name</string>
+    <string name="history_custodian">History Custodian</string>
+    <string name="enter_your_expertise">Enter your Expertise</string>
+    <string name="legacy_account">Legacy Account</string>
+    <string name="create_history">Create History</string>
+    <string name="toolbar_imageview">Toolbar ImageView</string>
+    <string name="close_page">Close Page</string>
+    <string name="cover_image">Cover Image</string>
+    <string name="follow">Follow</string>
+    <string name="create_legacy">Create Legacy</string>
+    <string name="commenting_options">Commenting Options</string>
+    <string name="add_victim_s_account_of_events">Add Victim\'s account of Events</string>
+    <string name="add_expert_s_opinion">Add Expert\'s Opinion</string>
+    <string name="add_witness_account_of_events">Add Witness account of Events</string>
+    <string name="add_your_opinion">Add your Opinion</string>
+    <string name="add_expert_opinion">Add Expert Opinion</string>
+    <string name="add_victim_account_of_events">Add Victim account of Events</string>
+    <string name="select_time_of_event">Select Time of Event</string>
+    <string name="select_image_from_gallery">Select Image from Gallery</string>
+    <string name="post_as_anonymous">Post as Anonymous</string>
+    <string name="share_your_opinion_account_of_events_or_expertise_on_this_post">Share your Opinion, Account of Events or Expertise on this Post…</string>
+    <string name="uploaded_image">Uploaded Image</string>
+    <string name="when_did_it_take_place">When did it take place?</string>
+    <string name="post_image">Post Image</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="topic_image">Topic Image</string>
+    <string name="_500">500</string>
+    <string name="select_topic">Select Topic</string>
+    <string name="kenyan_conversations">Kenyan Conversations</string>
+    <string name="subscribed">Subscribed</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="select_source">Select Source</string>
+    <string name="authenticity">Authenticity</string>
+    <string name="thursday_24_june_2021">Thursday, 24 June 2021</string>
+    <string name="nairobi_kenya">Nairobi, Kenya</string>
+    <string name="comment_on_post">Comment on Post</string>
+    <string name="like_post">Like Post</string>
+    <string name="message_post_publisher">Message Post Publisher</string>
+    <string name="show_post_data">Show Post Data</string>
+    <string name="share_post">Share Post</string>
+    <string name="show_datapoints_on_map">Show Data points on Map</string>
+    <string name="_4_min">4 min</string>
+    <string name="public_opinion">Public Opinion</string>
+    <string name="janet_john">janet John</string>
+    <string name="marker_background">Marker Background</string>
+    <string name="marker_image">Marker Image</string>
+    <string name="add_thread">Add Thread</string>
+    <string name="stories_nof_n_compassion">Stories \n of \n Compassion</string>
+    <string name="gallery_imageview">Gallery ImageView</string>
+    <string name="testimonials">Testimonials</string>
+    <string name="we_are_made_of_stories">We are all made of Stories</string>
+    <string name="subscribe_now">Subscribe Now</string>
+    <string name="subscribe_to_access_data_stories">Subscribe to Access Data Stories</string>
+    <string name="enter_legacy_name">Enter Legacy Name</string>
+    <string name="select_role">Select Role</string>
+    <string name="select_category">Select Category</string>
+    <string name="select_country">Select Country</string>
+    <string name="create_account">Create Account</string>
+    <string name="create_legacy_account">Create Legacy Account</string>
+    <string name="details">Details</string>
+    <string name="select_participants">Select Participants</string>
+    <string name="share_via">Share via…</string>
+    <string name="save_to_bookmarks">Save to Bookmarks</string>
+    <string name="share_via_direct_messages">Share via Direct Messages</string>
+    <string name="this_week_in_history">This Week in History</string>
+    <string name="this_day_in_history">This Day in History</string>
+    <string name="country_image">Country Image</string>
+    <string name="message">Message</string>
+    <string name="type_a_message">Type a Message</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="topics">Topics</string>
+    <string name="create_post">Create Post</string>
+    <string name="where_did_it_take_place">Where did it take place?</string>
+    <string name="tag_topic">Tag Topic</string>
+    <string name="_4_min_ago">4 Min ago</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="highlights">Highlights</string>
+    <string name="menu_settings">Settings</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="account">Account</string>
+    <string name="data_stories_subscription">Data Stories Plan</string>
+    <string name="subscribe_to_data_stories">Subscribe to Data Stories</string>
+    <string name="sponsor_conversation">Sponsor Conversation</string>
+    <string name="our_why">Our Why</string>
+    <string name="welcome_to_crowd_journal">Welcome to Crowd Journal</string>
+    <string name="privacy">Privacy</string>
+    <string name="manage_your_personal_information">Manage your Personal Information</string>
+    <string name="saved_posts">Saved Posts</string>
+    <string name="feedback">Feedback</string>
+    <string name="send_feedback_to_our_developers">Send feedback to our Developers</string>
+    <string name="about_crowd_journal">About Crowd Journal</string>
+    <string name="view_information_about_crowd_journal">View Information about Crowd Journal</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="conversation_ads">Conversation Ads</string>
+    <string name="verification">Verification</string>
+    <string name="verify_your_expertise">Verify your Expertise</string>
+    <string name="tag_location">Tag Location</string>
+    <string name="select_target_call_to_action">Select Target Call to Action</string>
+    <string name="enter_ad_web_link">Enter Ad Web Link</string>
+    <string name="enter_short_ad_summary">Enter Short Ad Summary</string>
+    <string name="enter_campaign_title">Enter Campaign Title</string>
+    <string name="select_brand_color">Select Brand Color</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="select">Select</string>
+    <string name="selected">Selected</string>
+    <string name="select_target_country">Select Target Country</string>
+    <string name="select_target_topic">Select Target Topic</string>
+    <string name="create_sponsored_ad">Create Sponsored Ad</string>
+    <string name="hall_of_fame">Hall of Fame</string>
+    <string name="select_featured_topics">Select Featured Topics</string>
+    <string name="select_date_of_birth">Select Date of Birth</string>
+    <string name="enter_user_name">Enter User Name</string>
+    <string name="related">Related</string>
+    <string name="monday">Monday</string>
+
+    <string name="msg_subscribed">Subscribed to Notifications</string>
+    <string name="msg_token_fmt" translatable="false">FCM registration Token: %s</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="default_notification_channel_name" translatable="true">Weather</string>
+    <string name="msg_subscribe_failed">Failed to subscribe to Notifications</string>
+    <string name="fcm_message">FCM Message</string>
+    <string name="update_your_name">Update your Name</string>
+    <string name="update_your_job_industry">Update your Job Industry</string>
+    <string name="update_your_county">Update your County</string>
+    <string name="update">Update</string>
+    <string name="edit_user_profile">Edit User Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="concerned_citizen">Concerned Citizen</string>
+    <string name="update_user_details">Update User Details</string>
+    <string name="upvote_this_comment">Upvote this Comment</string>
+    <string name="share_comment">Share Comment</string>
+    <string name="message_the_publisher">Message the Publisher</string>
+    <string name="reply_on_the_comment">Reply on the Comment</string>
+    <string name="select_your_country">Select your Country</string>
+    <string name="upload_profile_pic">Upload Profile Pic</string>
+    <string name="action_search">Search</string>
+    <string name="action_user_profile">User Profile</string>
+    <string name="action_sign_out">Sign Out</string>
+    <string name="comment_options">Comment Options</string>
+    <string name="delete_comment">Delete Comment</string>
+    <string name="edit_comment">Edit Comment</string>
+    <string name="edit_comment_section">Edit Comment Section</string>
+    <string name="report_comment">Report Comment</string>
+    <string name="flagged_comment">Flagged Comment</string>
+    <string name="action_delete">Delete Profile</string>
+    <string name="action_report">Report</string>
+    <string name="change_profile_pic">Change Profile Pic</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="sign_in_with_email">Sign In with Email</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="account_recovery">Account Recovery</string>
+    <string name="recover_email">Recover Email</string>
+    <string name="login_instead">Login Instead</string>
+    <string name="signup">SignUp</string>
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="repeat_your_password">Repeat your Password</string>
+    <string name="login_with_email">Login with Email</string>
+    <string name="sign_up_instead">Sign Up Instead</string>
+
+    <string name="edit">Edit</string>
+    <string name="options">Options</string>
+    <string name="delete">Delete</string>
+    <string name="report">Report</string>
+
+</resources>
