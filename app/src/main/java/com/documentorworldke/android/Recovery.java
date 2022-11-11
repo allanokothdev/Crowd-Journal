@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -55,8 +54,8 @@ public class Recovery extends AppCompatActivity implements View.OnClickListener 
 
             if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 emailTextInputEditText.setError("Enter Correct Email");
-                Toast.makeText(mContext,"Enter Correct Email",Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.GONE);
+                emailTextInputEditText.requestFocus();
             } else {
                 firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
                     if (task.isSuccessful()){

@@ -10,12 +10,12 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private RelativeLayout container;
     private TextInputEditText emailTextInputEditText;
     private TextInputEditText passwordTextInputEditText;
+    private TextInputLayout passwordTextInputLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         try {
             TextView signupTextView = findViewById(R.id.signupTextView);
             TextView recoveryTextView = findViewById(R.id.forgotTextView);
+            passwordTextInputLayout = findViewById(R.id.passwordTextInputLayout);
             Button button = findViewById(R.id.button);
             container = findViewById(R.id.container);
             progressBar = findViewById(R.id.progressBar);
@@ -56,7 +58,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId()==R.id.signupTextView) {
-            startActivity(new Intent(mContext, com.documentorworldke.android.SignUp.class));
+            startActivity(new Intent(mContext, SignUp.class));
         } else if (view.getId() == R.id.forgotTextView){
             startActivity(new Intent(mContext, Recovery.class));
         } else if (view.getId()==R.id.button){
@@ -65,12 +67,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
             if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 emailTextInputEditText.setError("Enter Correct Email");
-                Toast.makeText(mContext,"Enter Correct Email",Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.GONE);
+                emailTextInputEditText.requestFocus();
             } else if (TextUtils.isEmpty(password) || password.length()<6) {
-                passwordTextInputEditText.setError("Enter Password");
-                Toast.makeText(mContext,"Enter Strong Password",Toast.LENGTH_SHORT).show();
+                passwordTextInputLayout.setError("Enter Password");
                 progressBar.setVisibility(View.GONE);
+                passwordTextInputEditText.requestFocus();
             } else {
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {

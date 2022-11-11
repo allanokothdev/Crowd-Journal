@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1055149235363",
+    "firebase_url": "https://documentor-c8043-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "documentor-c8043",
+    "storage_bucket": "documentor-c8043.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055149235363:android:189febbdcfe4a9b25f3316",
+        "android_client_info": {
+          "package_name": "com.documentorworldke.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055149235363-ad2a7cmu4t7p1k5ag3dlcmdjp5v424hm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.documentorworldke.android",
+            "certificate_hash": "60183b758c777a8d1f992076b84e4c8bab01a5fd"
+          }
+        },
+        {
+          "client_id": "1055149235363-rchltmun91vbjke5cope2gg2s6t5s2ok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6DVxYc5tTLYcm9CuIGSyjQlpy4g30qto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055149235363-rchltmun91vbjke5cope2gg2s6t5s2ok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

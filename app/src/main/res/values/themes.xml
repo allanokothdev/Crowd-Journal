@@ -38,6 +38,12 @@
         <item name="sliderStyle">@style/Widget.App.Slider</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="listPreferredItemHeightSmall">64dp</item>
+        <!-- !Important! Add this to force the use of the Spinner mode -->
+        <item name="android:datePickerStyle">@style/myDatePickerStyle</item>
+    </style>
+
+    <style name="myDatePickerStyle" parent="android:Widget.Material.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
     </style>
 
     <style name="CustomExtendedFloating" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
@@ -65,6 +71,7 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="android:datePickerStyle">@style/myDatePickerStyle</item>
     </style>
 
     <style name="TextViewStyle" parent="Widget.AppCompat.TextView">

@@ -57,7 +57,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public class PostAdapter extends RecyclerView.Adapter{
+public class HistoryAdapter extends RecyclerView.Adapter{
 
     private final Context mContext;
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -68,7 +68,7 @@ public class PostAdapter extends RecyclerView.Adapter{
     public static final int IMAGE = 1;
     public static final int TEXT = 0;
 
-    public PostAdapter(Context mContext, List<Post> stringList, PostItemClickListener postItemClickListener) {
+    public HistoryAdapter(Context mContext, List<Post> stringList, PostItemClickListener postItemClickListener) {
         this.stringList = stringList;
         this.mContext = mContext;
         this.postItemClickListener = postItemClickListener;
@@ -77,10 +77,12 @@ public class PostAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemViewType(int position) {
         Post post = stringList.get(position);
-        if (Constants.POST_IMAGE.equals(post.getType())) {
-            return IMAGE;
+        switch (post.getType()) {
+            case Constants.POST_IMAGE:
+                return IMAGE;
+            default:
+                return TEXT;
         }
-        return TEXT;
     }
 
     @NonNull

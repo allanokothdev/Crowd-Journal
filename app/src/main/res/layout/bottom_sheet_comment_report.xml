@@ -45,7 +45,7 @@
                 android:contentDescription="@string/edit_comment"
                 android:layout_marginEnd="15dp"
                 android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_code_scanner_flash_on"
+                app:srcCompat="@drawable/ic_flash_on_vd_white_24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

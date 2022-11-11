@@ -264,5 +264,9 @@
     <string name="options">Options</string>
     <string name="delete">Delete</string>
     <string name="report">Report</string>
+    <string name="content_description">Content Description</string>
+    <string name="reply_to_this_comment">Reply to this Comment</string>
+    <string name="united_states">United States</string>
+    <string name="select_topics">Select Topics</string>
 
 </resources>

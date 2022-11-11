@@ -66,62 +66,97 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:drawablePadding="@dimen/dimen_5"
-                android:drawableTint="@color/colorPrimary"
-                android:drawableStart="@drawable/ic_mail_outline_blue_24dp"
-                android:layout_marginTop="24dp"
+            <com.google.android.material.textfield.TextInputLayout
                 android:hint="@string/enter_your_email"
-                android:textSize="18sp"
-                android:textCursorDrawable="@color/colorBlack"
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
-                android:fontFamily="@font/open_sans_semi_bold"
-                android:id="@+id/emailTextInputEditText"
-                android:layout_width="match_parent"
                 android:background="@drawable/rounded_chat_container"
-                android:paddingEnd="@dimen/dimen_10"
-                android:paddingStart="@dimen/dimen_10"
-                android:layout_height="@dimen/dimen_60"
-                tools:targetApi="m" />
+                android:layout_marginTop="@dimen/dimen_24"
+                app:startIconDrawable="@drawable/ic_mail_outline_blue_24dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:drawablePadding="@dimen/dimen_5"
-                android:drawableTint="@color/colorPrimary"
-                android:drawableStart="@drawable/ic_security_black_24dp"
-                android:layout_marginTop="24dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="18sp"
+                    android:gravity="start"
+                    android:cursorVisible="true"
+                    android:textCursorDrawable="@drawable/cursor_drawable"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/open_sans_semi_bold"
+                    android:id="@+id/emailTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded_chat_container"
+                    android:paddingEnd="@dimen/dimen_10"
+                    android:paddingStart="@dimen/dimen_10"
+                    android:layout_height="@dimen/dimen_60"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInputLayout"
                 android:hint="@string/enter_your_password"
-                android:textSize="18sp"
-                android:textCursorDrawable="@color/colorBlack"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:fontFamily="@font/open_sans_semi_bold"
-                android:id="@+id/passwordTextInputEditText"
-                android:layout_width="match_parent"
                 android:background="@drawable/rounded_chat_container"
-                android:paddingEnd="@dimen/dimen_10"
-                android:paddingStart="@dimen/dimen_10"
-                android:layout_height="@dimen/dimen_60"
-                tools:ignore="UnusedAttribute" />
+                android:layout_marginTop="@dimen/dimen_24"
+                app:startIconDrawable="@drawable/ic_security_black_24dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorGray"
+                app:passwordToggleDrawable="@drawable/icon_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:drawablePadding="@dimen/dimen_5"
-                android:drawableTint="@color/colorPrimary"
-                android:drawableStart="@drawable/ic_security_black_24dp"
-                android:layout_marginTop="24dp"
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:imeOptions="actionNext"
+                    android:cursorVisible="true"
+                    android:gravity="start"
+                    android:textColorLink="@color/transparent"
+                    android:background="@color/transparent"
+                    android:id="@+id/passwordTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_60"
+                    android:inputType="textPassword"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/open_sans_semi_bold"
+                    android:textSize="18sp"
+                    android:textCursorDrawable="@drawable/cursor_drawable"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/repeatPasswordTextInputLayout"
                 android:hint="@string/repeat_your_password"
-                android:textSize="18sp"
-                android:textCursorDrawable="@color/colorBlack"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:fontFamily="@font/open_sans_semi_bold"
-                android:id="@+id/repeatPasswordTextInputEditText"
-                android:layout_width="match_parent"
                 android:background="@drawable/rounded_chat_container"
-                android:paddingEnd="@dimen/dimen_10"
-                android:paddingStart="@dimen/dimen_10"
-                android:layout_height="@dimen/dimen_60"
-                tools:targetApi="m" />
+                android:layout_marginTop="@dimen/dimen_24"
+                app:startIconDrawable="@drawable/ic_security_black_24dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorGray"
+                app:passwordToggleDrawable="@drawable/icon_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:imeOptions="actionDone"
+                    android:cursorVisible="true"
+                    android:background="@color/transparent"
+                    android:id="@+id/repeatPasswordTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_60"
+                    android:inputType="textPassword"
+                    android:gravity="start"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/open_sans_semi_bold"
+                    android:textSize="18sp"
+                    android:textCursorDrawable="@drawable/cursor_drawable"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
                 android:id="@+id/privacyTextView"

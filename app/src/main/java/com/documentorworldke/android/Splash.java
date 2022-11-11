@@ -100,7 +100,7 @@ public class Splash extends AppCompatActivity implements View.OnClickListener{
 
     private void sendUserToCreateActivity(boolean status){
         if (status){
-            startActivity(new Intent(mContext, com.documentorworldke.android.CreateUserProfile.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            startActivity(new Intent(mContext, CreateUserProfile.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         }else {
             startActivity(new Intent(mContext, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         }
@@ -114,9 +114,9 @@ public class Splash extends AppCompatActivity implements View.OnClickListener{
             startActivityForResult(signInIntent, RC_SIGN_IN);
             progressBar.setVisibility(View.VISIBLE);
         } else if (v.getId()==R.id.emailButton){
-            startActivity(new Intent(mContext, com.documentorworldke.android.SignUp.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            startActivity(new Intent(mContext, SignUp.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         } else if (v.getId()==R.id.loginTextView){
-            startActivity(new Intent(mContext, com.documentorworldke.android.Login.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            startActivity(new Intent(mContext, Login.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         }
     }
 

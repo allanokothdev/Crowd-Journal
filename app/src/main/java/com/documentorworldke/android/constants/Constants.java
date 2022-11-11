@@ -13,6 +13,9 @@ public class Constants {
     public final static String VERIFIED = "verified";
     public final static String EMAIL = "email";
 
+    public final static String FROM = "from";
+    public final static String TO = "to";
+
     public static final String MAPS_KEY = "YOUR_GOOGLEMAPSKEY";
 
     public final static String POST_SOURCE = "User Generated";
@@ -57,6 +60,7 @@ public class Constants {
 
     public final static String OBJECT = "object";
     public final static String OBJECT_ID = "objectID";
+    public final static String OBJECT_LIST = "objectList";
 
     public final static String TOKEN_NOTIFICATION = "notifications";
     public final static String GROUPS_TOKENS = "grouptokens";

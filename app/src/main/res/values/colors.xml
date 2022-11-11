@@ -7,6 +7,7 @@
 
     <color name="toolbarTitle">@color/colorPrimary</color>
     <color name="toolbarBackground">@color/colorWhite</color>
+    <color name="bg_separator">#DA707070</color>
 
     <color name="oman">@color/colorBlue</color>
     <color name="botswana">@color/colorBlue</color>

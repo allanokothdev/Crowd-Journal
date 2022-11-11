@@ -1,310 +1,34 @@
 <resources>
 
-    <string-array name="topictabs">
-        <item>Latest</item>
-        <item>People</item>
+    <string-array name="timeline">
+        <item>Mapview</item>
+        <item>Timeline View</item>
         <item>Links</item>
         <item>Photos</item>
         <item>Videos</item>
     </string-array>
 
-    <string-array name="expertise">
-        <item>Activist</item>
-        <item>Concerned Citizen</item>
-        <item>Data Journalist</item>
-        <item>History Custodian</item>
-        <item>Journalist</item>
-        <item>Mental Health Advocate</item>
-    </string-array>
-
-    <string-array name="expertises">
-        <item>Social Service Worker</item>
-        <item>Mental Health Advocate</item>
-        <item>Mental Health Expert</item>
-        <item>Journalist</item>
-        <item>Policy Maker</item>
-        <item>Policy Maker</item>
-        <item>Journalist</item>
-        <item>Community Health Worker</item>
-        <item>Nurse</item>
-        <item>CDC Expert</item>
-        <item>Health Researcher</item>
-        <item>Journalist</item>
-        <item>Medical Professional</item>
-        <item>Policy Maker</item>
-        <item>Reproductive Rights Advocate</item>
-        <item>WHO Expert</item>
-        <item>Real Estate Investor</item>
-        <item>Housing Policy Expert</item>
-        <item>Journalist</item>
-        <item>Policy Maker</item>
-        <item>Urban Planner</item>
-        <item>Free Speech Advocate</item>
-        <item>Beauty Influencer</item>
-        <item>Dermatologist</item>
-        <item>Journalist</item>
-        <item>Makeup Artist</item>
-        <item>Model</item>
-        <item>Naturalism Advocate</item>
-        <item>Policy Maker</item>
-        <item>NGO</item>
-        <item>Journalist</item>
-        <item>MLK Dream Ambassador</item>
-        <item>Policy Maker</item>
-        <item>Race Relations Expert</item>
-        <item>Correction Officer</item>
-        <item>Journalist</item>
-        <item>Law Enforcement</item>
-        <item>Policy Maker</item>
-        <item>Feminist</item>
-        <item>Gender Equality Advocate</item>
-        <item>Journalist</item>
-        <item>Policy Maker</item>
-        <item>Sexuality Influencers</item>
-        <item>Public Policy Lobbyist</item>
-        <item>Sexual Health Educator</item>
-        <item>Sexual Health Expert</item>
-        <item>Sexual Health Advocate</item>
-        <item>Reproductive Health Specialist</item>
-        <item>Lesbian</item>
-        <item>Trans</item>
-        <item>Gay</item>
-        <item>Queer</item>
-        <item>Gay</item>
-        <item>Journalist</item>
-        <item>Policy Maker</item>
-        <item>LGBTQ Rights Advocate</item>
-        <item>Tech Ethicist</item>
-        <item>Software Engineer</item>
-        <item>Data Privacy Expert</item>
-        <item>Humane Tech Advocate</item>
-        <item>Journalist</item>
-        <item>Policy Maker</item>
-        <item>Angel</item>
-        <item>Entrepreneur</item>
-        <item>CEO</item>
-        <item>Journalist</item>
-        <item>Policy Maker</item>
-        <item>Venture Capitalist</item>
-        <item>Addict</item>
-        <item>Journalist</item>
-        <item>Therapist</item>
-        <item>Policy Maker</item>
-        <item>Psychotherapist</item>
-        <item>Climate Action Advocate</item>
-        <item>Ecologist</item>
-        <item>Environment Policy Expert</item>
-        <item>Journalist</item>
-        <item>Policy Maker</item>
-        <item>Journalist</item>
-        <item>Family Therapist</item>
-        <item>Marriage Counselor</item>
-        <item>Policy Maker</item>
-        <item>National Security Advisor</item>
-        <item>Actor</item>
-        <item>Actress</item>
-        <item>Beauty Influencer</item>
-        <item>Celebrity</item>
-        <item>Climate Action Advocate</item>
-        <item>Climate Expert</item>
-        <item>Dermatologist</item>
-        <item>Economist</item>
-        <item>Entrepreneur</item>
-        <item>Food Influencer</item>
-        <item>Foreign Policy Expert</item>
-        <item>Free Speech Advocate</item>
-        <item>Health Expert</item>
-        <item>Historian</item>
-        <item>Immigration Policy Expert</item>
-        <item>Journalist</item>
-        <item>LGBTQ Rights Advocate</item>
-        <item>Mental Health Advocate</item>
-        <item>Mental Health Expert</item>
-        <item>National Security Expert</item>
-        <item>Patriot</item>
-        <item>Psychologist</item>
-        <item>Reproductive Rights Advocate</item>
-        <item>Social Justice Warrior</item>
-        <item>Tech Expert</item>
-    </string-array>
-
-    <string-array name="kenya">
-        <item>Police Violence</item>
-        <item>Corruption</item>
-        <item>Unemployment</item>
-        <item>Mental Health</item>
-        <item>Elections</item>
-        <item>Land Issues</item>
-        <item>Constitution</item>
-        <item>Gender Based Violence</item>
-        <item>Affordable Housing</item>
-        <item>Climate Change</item>
-        <item>Taxation</item>
-        <item>Diaspora</item>
-    </string-array>
-
-    <string-array name="unitedkingdom">
-        <item>Palestine-Israel</item>
-        <item>Climate Change</item>
-        <item>Mental Health</item>
-        <item>Digital Privacy</item>
-    </string-array>
-
-    <string-array name="morocco">
-        <item>Palestine-Israel</item>
-    </string-array>
-
-    <string-array name="israel">
-        <item>Climate Change</item>
-        <item>Palestine-Israel</item>
-    </string-array>
-
-    <string-array name="southafrica">
-        <item>Racism</item>
-        <item>Abduction</item>
-        <item>Mental Health</item>
-        <item>Sexual Abuse</item>
-        <item>Palestine-Israel</item>
-    </string-array>
-
-    <string-array name="canada">
-        <item>Free Speech</item>
-        <item>Palestine-Israel</item>
-        <item>Climate Change</item>
-        <item>Immigration</item>
-        <item>Mental Health</item>
-    </string-array>
-
-    <string-array name="unitedstates">
-        <item>Police Violence</item>
-        <item>Racial Injustice</item>
-        <item>Sexual Assault</item>
-        <item>Domestic Violence</item>
-        <item>Gun Violence</item>
-    </string-array>
-
-    <string-array name="topicalfocus">
-        <item>Abortion Rights</item>
-        <item>ADOS</item>
-        <item>Animal Rights</item>
+    <string-array name="topics">
         <item>Anti Semitism</item>
-        <item>Affordable Health Care</item>
-        <item>American Identity</item>
-        <item>Angel Investing</item>
-        <item>Anxiety</item>
-        <item>Ageing Population</item>
-        <item>Big Tech</item>
-        <item>Bipolar Disorder</item>
         <item>Biodiversity</item>
-        <item>Body Positivity</item>
-        <item>Body Shaming</item>
-        <item>British Identity</item>
-        <item>Canadian Identity</item>
-        <item>Cancel Culture</item>
-        <item>Capitalism</item>
-        <item>Carbon Emission</item>
-        <item>Carbon Reduction</item>
-        <item>Carbon Tax</item>
-        <item>Censorship</item>
+        <item>Carbon Emissions</item>
         <item>Child Abuse</item>
-        <item>Child Care</item>
-        <item>Classism</item>
+        <item>Climate Action</item>
         <item>Climate Change</item>
-        <item>Colorism</item>
-        <item>Community Policing</item>
-        <item>Concentration Camps</item>
-        <item>Conversion Therapy</item>
-        <item>Convict Leasing</item>
-        <item>Criminal Justice</item>
-        <item>Cultural Appropriation</item>
-        <item>Cyber Bullying</item>
-        <item>DACA</item>
-        <item>Data Privacy</item>
-        <item>Dating Violence</item>
-        <item>Death Penalty</item>
-        <item>Death Row</item>
-        <item>Deforestation</item>
-        <item>Dementia</item>
-        <item>Depression</item>
-        <item>Dissociative Disorders</item>
-        <item>Divorce</item>
-        <item>Domestic Abuse</item>
-        <item>Drug Addiction</item>
-        <item>Eating Disorder</item>
-        <item>Electoral College</item>
-        <item>Election Interference</item>
-        <item>Electoral Reform</item>
-        <item>Euthanasia</item>
-        <item>Facial Segregation</item>
-        <item>Fascism</item>
-        <item>Fat Shaming</item>
-        <item>Feminism</item>
-        <item>First Nation Rights</item>
-        <item>Foreign Policy</item>
-        <item>Founders</item>
-        <item>Fertility Rate</item>
-        <item>Free Markets</item>
-        <item>Free Speech</item>
-        <item>Funding</item>
-        <item>Future of Work</item>
-        <item>Gambling Addiction</item>
-        <item>Global Warming</item>
-        <item>Gender Diversity</item>
-        <item>Gender Dysphoria</item>
+        <item>Domestic Violence</item>
         <item>Gentrification</item>
         <item>GerryMandering</item>
-        <item>Grief</item>
-        <item>Gun Rights</item>
         <item>Gun Violence</item>
         <item>Hate Speech</item>
         <item>Homelessness</item>
-        <item>Home Ownership</item>
         <item>Homophobia</item>
         <item>Human Trafficking</item>
-        <item>Immigrant Stories</item>
+        <item>Immigration</item>
         <item>Incarceration</item>
         <item>Islamophobia</item>
-        <item>Isolation</item>
-        <item>Kenyan Identity</item>
-        <item>LGBTQ Rights</item>
-        <item>Loneliness</item>
-        <item>Loss</item>
-        <item>Masturbation</item>
-        <item>Melanin</item>
-        <item>Menopause</item>
-        <item>Menstruation</item>
-        <item>Micro Aggresions</item>
-        <item>Modern Slavery</item>
-        <item>Molestation</item>
-        <item>Nationalism</item>
-        <item>Naturalism</item>
-        <item>Niqab</item>
-        <item>Obesity</item>
-        <item>Obsessive Compulsive Disorder</item>
-        <item>Online Harassment</item>
-        <item>Online Learning</item>
-        <item>Opioid Crisis</item>
-        <item>Ozone Depletion</item>
-        <item>Pan Africanism</item>
-        <item>Pension</item>
-        <item>Perinatal Mental Illness</item>
-        <item>Periods</item>
-        <item>Personality Disorders</item>
-        <item>Phobias</item>
-        <item>Plastic Pollution</item>
-        <item>Police Brutality</item>
-        <item>Police Unions</item>
-        <item>Pollution</item>
-        <item>Pornography</item>
-        <item>Predictive Policing</item>
-        <item>Pride</item>
-        <item>Pro Choice</item>
-        <item>Pre Existing Conditions</item>
-        <item>Pro Life</item>
-        <item>Prostitution</item>
-        <item>PTSD</item>
-        <item>Psychosis</item>
-        <item>Queer</item>
+        <item>Incarceration</item>
+        <item>Mental Health</item>
+        <item>Police Violence</item>
         <item>Racial Justice</item>
         <item>Racial Segregation</item>
         <item>Racism</item>
@@ -317,52 +41,18 @@
         <item>Schizophrenia</item>
         <item>School Shooting</item>
         <item>Segregation</item>
-        <item>Self Care</item>
-        <item>Self Esteem</item>
-        <item>Self Love</item>
-        <item>Sex Education</item>
-        <item>Sex Trafficking</item>
+        <item>Rising Sea Levels</item>
         <item>Sexism</item>
-        <item>Sexual Health</item>
-        <item>Sex Workers</item>
         <item>Sexual Assault</item>
-        <item>Skin Lightening</item>
-        <item>Socialism</item>
-        <item>South African Identity</item>
-        <item>Startups</item>
-        <item>Slavery</item>
-        <item>Stalking</item>
-        <item>Stonewall</item>
-        <item>Stress</item>
-        <item>Student Debt</item>
-        <item>Substance Abuse</item>
-        <item>Suicide</item>
-        <item>Surveillance</item>
-        <item>Taiwan Identity</item>
-        <item>Twordaxation</item>
-        <item>Toxic Masculinity</item>
+        <item>Sustainability</item>
+        <item>School Shooting</item>
         <item>Transphobia</item>
-        <item>Teenage Pregnancy</item>
-        <item>Universal Basic Income</item>
-        <item>Universal Health Care</item>
-        <item>Venture Capital</item>
-        <item>Vietnam Identity</item>
         <item>Voter Suppression</item>
         <item>Water Pollution</item>
-        <item>Welfare</item>
-        <item>Windrush Generation</item>
-        <item>Women Rights</item>
         <item>Xenophobia</item>
     </string-array>
 
-    <string-array name="locations">
-        <item>Canada</item>
-        <item>Israel</item>
-        <item>Kenya</item>
-        <item>South Africa</item>
-        <item>United Kingdom</item>
-        <item>United States</item>
-    </string-array>
+
 
     <string-array name="posting">
         <item>Concerned Citizen</item>
@@ -371,90 +61,7 @@
         <item>Witness</item>
     </string-array>
 
-    <string-array name="sources">
-        <item>History</item>
-        <item>Wikipedia</item>
-        <item>Twitter</item>
-        <item>Wikileaks</item>
-    </string-array>
 
-    <string-array name="countries">
-        <item>Israel</item>
-        <item>Kenya</item>
-        <item>United Kingdom</item>
-        <item>United States</item>
-    </string-array>
-
-    <string-array name="cta">
-        <item>Get your Tickets</item>
-        <item>Visit Us </item>
-        <item>Download</item>
-        <item>Tickets</item>
-        <item>Book</item>
-        <item>Shop</item>
-        <item>Buy</item>
-        <item>Order</item>
-        <item>Subscribe</item>
-        <item>Sign Up</item>
-        <item>Try for Free</item>
-        <item>Get Started</item>
-        <item>Learn More</item>
-        <item>Join Us</item>
-        <item>Sign Up for Free</item>
-        <item>Join Free for a Month</item>
-        <item>Give us a try</item>
-        <item>Join</item>
-        <item>Discover</item>
-        <item>Discover the Magic</item>
-        <item>Claim your Free Trial</item>
-        <item>Continue</item>
-        <item>What we Do</item>
-        <item>Follow the Majic</item>
-        <item>View Products</item>
-        <item>Create Account</item>
-        <item>Shop Now</item>
-        <item>Limited Edition</item>
-    </string-array>
-
-    <string-array name="roles">
-        <item>Activist</item>
-        <item>Billionaire</item>
-        <item>Business</item>
-        <item>Community</item>
-        <item>City</item>
-        <item>Freedom Fighter</item>
-        <item>Movement</item>
-        <item>Public Institution</item>
-        <item>Public Servant</item>
-        <item>Public Figure</item>
-        <item>Religion</item>
-        <item>Sports Person</item>
-        <item>Visionary</item>
-    </string-array>
-
-    <string-array name="subcategories">
-        <item>Social</item>
-        <item>Sports</item>
-        <item>Technology</item>
-        <item>Economic</item>
-        <item>Political</item>
-        <item>Intellectual</item>
-        <item>Cultural</item>
-        <item>Diplomatic</item>
-        <item>Environmental</item>
-    </string-array>
-
-    <!-- Reply Preference -->
-
-    <string-array name="reply_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
-    </string-array>
-
-    <string-array name="reply_values">
-        <item>reply</item>
-        <item>reply_all</item>
-    </string-array>
     <string-array name="activityEntries">
         <item>Map Basic</item>
         <item>Map Navigation</item>

@@ -9,6 +9,7 @@
     tools:context=".Recovery">
 
     <androidx.appcompat.widget.Toolbar
+        app:title="Recovery"
         app:titleTextColor="@color/toolbarTitle"
         android:background="@color/toolbarBackground"
         android:id="@+id/toolbar"
@@ -53,8 +54,9 @@
                 android:layout_marginTop="24dp"
                 android:hint="@string/enter_your_email"
                 android:textSize="18sp"
-                android:textCursorDrawable="@color/colorBlack"
-                android:imeOptions="actionNext"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@drawable/cursor_drawable"
+                android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:fontFamily="@font/open_sans_semi_bold"
                 android:id="@+id/emailTextInputEditText"

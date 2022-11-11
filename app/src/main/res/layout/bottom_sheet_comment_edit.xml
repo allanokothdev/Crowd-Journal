@@ -81,7 +81,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:padding="@dimen/dimen_10"
                 android:layout_marginTop="@dimen/dimen_24"
-                android:textCursorDrawable="@color/colorBlack"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@drawable/cursor_drawable"
                 android:fontFamily="@font/open_sans_regular"
                 android:textColorLink="@color/blue"
                 android:gravity="top"

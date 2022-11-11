@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    android:layout_height="match_parent"
+    app:ignore="NamespaceTypo">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_margin">
+
+        <TextView
+            android:fontFamily="@font/open_sans_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/select_topics"
+            android:textColor="#4d4d4d"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_separator"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:background="@color/bg_separator" />
+
+
+    <ScrollView
+        android:layout_marginTop="2dp"
+        android:background="@color/colorWhite"
+        android:layout_below="@id/divider"
+        android:layout_above="@id/bottomToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/tagFlowLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            zhy:max_select="-1">
+        </com.zhy.view.flowlayout.TagFlowLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:padding="8dp"
+        android:background="@color/colorWhite"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottomToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:layout_gravity="end|center_vertical"
+            android:fontFamily="@font/open_sans_semi_bold"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:background="@drawable/primary_background_button"
+            android:drawablePadding="5dp"
+            android:id="@+id/button"
+            android:paddingEnd="@dimen/dimen_20"
+            android:paddingStart="@dimen/dimen_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finish"
+            app:ignore="RtlCompat" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/progressBar"
+        android:layout_gravity="bottom|center_horizontal"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_30"
+        app:indicatorColor="@color/colorPrimary"
+        app:indicatorName="BallPulseIndicator" />
+</RelativeLayout>
