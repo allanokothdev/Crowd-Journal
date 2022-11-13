@@ -30,6 +30,7 @@ import com.documentorworldke.android.listeners.PostItemClickListener;
 import com.documentorworldke.android.models.Post;
 import com.documentorworldke.android.models.User;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -89,6 +90,7 @@ public class UserProfile extends AppCompatActivity implements PostItemClickListe
             }
         });
 
+        ExtendedFloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         DividerItemDecoration divider = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
@@ -97,6 +99,7 @@ public class UserProfile extends AppCompatActivity implements PostItemClickListe
         adapter = new PostAdapter(mContext, objectList, this);
         recyclerView.setAdapter(adapter);
 
+        floatingActionButton.setOnClickListener(this);
         moreImageView.setOnClickListener(this);
         imageView.setTransitionName(user.getId());
         Glide.with(mContext.getApplicationContext()).load(user.getPic()).centerCrop().dontAnimate().listener(new RequestListener<Drawable>() {@Override public boolean onLoadFailed(@androidx.annotation.Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) { supportStartPostponedEnterTransition();return false; }@Override public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) { supportStartPostponedEnterTransition();return false; }}).into(imageView);

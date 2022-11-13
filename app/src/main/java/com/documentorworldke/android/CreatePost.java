@@ -32,6 +32,11 @@ import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.models.Post;
 import com.documentorworldke.android.models.User;
 import com.documentorworldke.android.utils.GetUser;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -45,6 +50,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -52,13 +58,15 @@ import java.util.Objects;
 public class CreatePost extends AppCompatActivity implements LocationListener, View.OnClickListener {
 
     public static final int PICK_IMAGE = 1;
+    private long selectedDate = System.currentTimeMillis();
     private final String currentUserID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private final Context mContext = CreatePost.this;
+    private TextInputEditText locationTextInputEditText;
     private ImageView imageView;
     private CardView imageCardView;
     private TextInputEditText textInputEditText;
-    private TextView locationTextView;
+    private TextView subTextView;
     private TextView button;
     private AVLoadingIndicatorView progressBar;
     private Uri mainImageUri = null;
@@ -76,8 +84,9 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
         user = GetUser.getUser(mContext,currentUserID);
 
         progressBar = findViewById(R.id.progressBar);
-        locationTextView = findViewById(R.id.locationTextView);
+        subTextView = findViewById(R.id.subTextView);
         ImageView profileImageView = findViewById(R.id.profileImageView);
+        locationTextInputEditText = findViewById(R.id.locationTextInputEditText);
         TextView textView = findViewById(R.id.textView);
         imageView = findViewById(R.id.imageView);
         imageCardView = findViewById(R.id.imageCardView);
@@ -85,7 +94,7 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
         button = findViewById(R.id.button);
         ImageView galleryImageView = findViewById(R.id.galleryImageView);
         button.setOnClickListener(this);
-        locationTextView.setOnClickListener(this);
+        subTextView.setOnClickListener(this);
         galleryImageView.setOnClickListener(this);
 
         Glide.with(mContext.getApplicationContext()).load(user.getPic()).placeholder(R.drawable.placeholder).into(profileImageView);
@@ -107,7 +116,7 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
             case R.id.button:
 
                 String summary = textInputEditText.getText().toString();
-                String address = locationTextView.getText().toString();
+                String address = locationTextInputEditText.getText().toString();
                 progressBar.setVisibility(View.VISIBLE);
 
                 if (TextUtils.isEmpty(summary)){
@@ -131,7 +140,7 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
                 }else {
 
                     button.setEnabled(false);
-                    postObject(summary,address,System.currentTimeMillis());
+                    postObject(summary,address,selectedDate);
                     progressBar.setVisibility(View.VISIBLE);
                     break;
                 }
@@ -197,7 +206,8 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try { if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && null != data) {
+        try {
+            if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && null != data) {
                 mainImageUri = data.getData();
                 imageView.setImageURI(mainImageUri);
                 imageCardView.setVisibility(View.VISIBLE);
@@ -233,7 +243,7 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
         try {
             addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
             assert addresses != null;
-            locationTextView.setText(addresses.get(0).getAddressLine(0));
+            locationTextInputEditText.setText(addresses.get(0).getAddressLine(0));
             latitude = addresses.get(0).getLatitude();
             longitude = addresses.get(0).getLongitude();
         } catch (IOException e) {

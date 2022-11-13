@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimelineView">
+
+    <androidx.appcompat.widget.Toolbar
+        app:title="Data Stories"
+        app:titleTextColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="@color/colorWhite">
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_below="@id/toolbar"
+        android:id="@+id/tabs"
+        app:tabIndicatorHeight="3dp"
+        app:tabIndicatorAnimationMode="linear"
+        app:tabTextAppearance="@style/TabTextViewStyle"
+        app:tabTextColor="@color/colorGray"
+        app:tabIndicatorColor="@color/colorBlack"
+        app:tabSelectedTextColor="@color/colorBlack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewPager"
+        android:orientation="horizontal" />
+
+</RelativeLayout>

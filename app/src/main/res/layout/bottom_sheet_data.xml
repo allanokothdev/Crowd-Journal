@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:background="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.Toolbar
+        app:titleTextColor="@color/toolbarTitle"
+        android:background="@color/toolbarBackground"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="17sp"
+            android:textColor="@color/toolbarTitle"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="@string/select_data_to_visualize_and_analyze"
+            android:layout_gravity="center_vertical|start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:padding="@dimen/dimen_16"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <Button
+                android:textAlignment="textStart"
+                android:drawableTint="@color/colorWhite"
+                android:drawableEnd="@drawable/outline_event_24"
+                android:textAllCaps="false"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans_regular"
+                android:background="@drawable/primary_background_button"
+                android:textColor="@color/colorWhite"
+                android:text="Fetch Posts from..."
+                android:id="@+id/fromButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60"/>
+
+            <Button
+                android:textAlignment="textStart"
+                android:drawableTint="@color/colorWhite"
+                android:drawableEnd="@drawable/outline_event_24"
+                android:textAllCaps="false"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans_regular"
+                android:background="@drawable/primary_background_button"
+                android:textColor="@color/colorWhite"
+                android:text="Fetch Posts to..."
+                android:id="@+id/toButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60"/>
+
+
+            <Button
+                android:textAllCaps="false"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:fontFamily="@font/open_sans_semi_bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/primary_background_button"
+                android:text="Fetch Posts"
+                android:textAlignment="center"
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/progressBar"
+        android:layout_gravity="bottom|center_horizontal"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_30"
+        app:indicatorColor="@color/colorPrimary"
+        app:indicatorName="BallPulseIndicator" />
+
+</RelativeLayout>
