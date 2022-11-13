@@ -100,23 +100,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout android:layout_marginTop="5dp"
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="@dimen/dimen_8"
+                        android:id="@+id/imageCardView"
                         android:visibility="gone"
-                        android:id="@+id/constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:scaleType="centerCrop"
-                            android:contentDescription="@string/menu_chat"
-                            android:src="@drawable/placeholder"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="1:1"
-                            android:id="@+id/imageView"
+                        <androidx.constraintlayout.widget.ConstraintLayout android:layout_marginTop="5dp"
+                            android:id="@+id/constraintLayout"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp" />
+                            android:layout_height="wrap_content">
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            <ImageView
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/menu_chat"
+                                android:src="@drawable/placeholder"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="2:1"
+                                android:id="@+id/imageView"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
 
                 </androidx.cardview.widget.CardView>
 

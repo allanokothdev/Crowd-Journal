@@ -17,14 +17,13 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -40,6 +39,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -56,11 +56,11 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private final Context mContext = CreatePost.this;
     private ImageView imageView;
-    private ConstraintLayout constraintLayout;
+    private CardView imageCardView;
     private TextInputEditText textInputEditText;
     private TextView locationTextView;
     private TextView button;
-    private ProgressBar progressBar;
+    private AVLoadingIndicatorView progressBar;
     private Uri mainImageUri = null;
     private String downloadUrlString = null;
     private User user;
@@ -80,7 +80,7 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
         ImageView profileImageView = findViewById(R.id.profileImageView);
         TextView textView = findViewById(R.id.textView);
         imageView = findViewById(R.id.imageView);
-        constraintLayout = findViewById(R.id.constraintLayout);
+        imageCardView = findViewById(R.id.imageCardView);
         textInputEditText = findViewById(R.id.textInputEditText);
         button = findViewById(R.id.button);
         ImageView galleryImageView = findViewById(R.id.galleryImageView);
@@ -142,17 +142,19 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
 
     private void postObject(String summary, String location, long selectedDate){
         try {
-            if (downloadUrlString != null) {
-                @SuppressLint("SimpleDateFormat") String today = new SimpleDateFormat("ddMMMM").format(selectedDate);
-                @SuppressLint("SimpleDateFormat") String year = new SimpleDateFormat("yyyy").format(selectedDate);
-                @SuppressLint("SimpleDateFormat") String month = new SimpleDateFormat("MMM").format(selectedDate);
 
-                ArrayList<String> tags = new ArrayList<>();
-                tags.add(location);
-                tags.add(currentUserID);
-                tags.add(today);
-                tags.add(year);
-                tags.add(month);
+            @SuppressLint("SimpleDateFormat") String today = new SimpleDateFormat("ddMMMM").format(selectedDate);
+            @SuppressLint("SimpleDateFormat") String year = new SimpleDateFormat("yyyy").format(selectedDate);
+            @SuppressLint("SimpleDateFormat") String month = new SimpleDateFormat("MMM").format(selectedDate);
+
+            ArrayList<String> tags = new ArrayList<>();
+            tags.add(location);
+            tags.add(currentUserID);
+            tags.add(today);
+            tags.add(year);
+            tags.add(month);
+            tags.add(user.getCountry());
+            if (downloadUrlString != null) {
 
                 DocumentReference documentReference = firebaseFirestore.collection(Constants.POSTS).document();
                 String objectID = documentReference.getId();
@@ -170,22 +172,11 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
                 byte[] data = byteArrayOutputStream.toByteArray();
                 UploadTask uploadTask = ref.putBytes(data);
                 uploadTask.addOnProgressListener(taskSnapshot -> {
-                    float percentage = taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount();
-                    progressBar.setProgress((int)percentage);
+                    //float percentage = taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount();
+                    //progressBar.setProgress((int)percentage);
                 }).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl().addOnCompleteListener(task -> {
                     if (task.isSuccessful()){
                         Uri downloadUri = task.getResult();
-                        @SuppressLint("SimpleDateFormat") String today = new SimpleDateFormat("ddMMMM").format(selectedDate);
-                        @SuppressLint("SimpleDateFormat") String year = new SimpleDateFormat("yyyy").format(selectedDate);
-                        @SuppressLint("SimpleDateFormat") String month = new SimpleDateFormat("MMM").format(selectedDate);
-
-                        ArrayList<String> tags = new ArrayList<>();
-                        tags.add(location);
-                        tags.add(currentUserID);
-                        tags.add(today);
-                        tags.add(year);
-                        tags.add(month);
-
                         DocumentReference documentReference = firebaseFirestore.collection(Constants.POSTS).document();
                         String objectID = documentReference.getId();
                         Post post = new Post(objectID,objectID,"",tags,currentUserID,user,summary,downloadUri.toString(),selectedDate,location,user.getCountry(),Constants.POST_IMAGE,user.getToken(),latitude,longitude,0,0,0);
@@ -209,7 +200,7 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
         try { if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && null != data) {
                 mainImageUri = data.getData();
                 imageView.setImageURI(mainImageUri);
-                constraintLayout.setVisibility(View.VISIBLE);
+                imageCardView.setVisibility(View.VISIBLE);
                 postImage(mainImageUri);
             }
         }catch (Exception e){ e.printStackTrace();}

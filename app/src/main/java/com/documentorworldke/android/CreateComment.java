@@ -118,7 +118,7 @@ public class CreateComment extends AppCompatActivity implements View.OnClickList
     }
 
     private void addUpCommentsCount(final String objectID){
-        DocumentReference reference = firebaseFirestore.collection(Constants.COMMENTS).document(objectID);
+        DocumentReference reference = firebaseFirestore.collection(Constants.POSTS).document(objectID);
         firebaseFirestore.runTransaction(transaction -> {
             DocumentSnapshot documentSnapshot = transaction.get(reference);
             double newCount = documentSnapshot.getDouble("comments")+1;

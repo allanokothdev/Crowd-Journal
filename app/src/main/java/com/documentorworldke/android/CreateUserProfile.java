@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
 import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.models.User;
 import com.google.android.material.snackbar.Snackbar;
@@ -86,6 +87,9 @@ public class CreateUserProfile extends AppCompatActivity implements View.OnClick
         nameTextInputEditText = findViewById(R.id.nameTextInputEditText);
         usernameTextInputEditText = findViewById(R.id.usernameTextInputEditText);
         nameTextInputEditText.setText(firebaseUser.getDisplayName());
+        downloadUrlString = firebaseUser.getPhotoUrl().toString();
+        Glide.with(mContext).load(downloadUrlString).placeholder(R.drawable.placeholder).into(imageView);
+        usernameTextInputEditText.setText(firebaseUser.getDisplayName().toLowerCase().replace(" ",""));
         countryCodePicker.detectLocaleCountry(true);
         countryCodePicker.detectSIMCountry(true);
         countryCodePicker.detectNetworkCountry(true);

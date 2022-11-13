@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements PostItemClickList
     }
 
     private void fetchObjects(String objectID){
-        Query query = firebaseFirestore.collection(Constants.POSTS).orderBy("id", Query.Direction.DESCENDING).whereArrayContains("tags",objectID);
+        Query query = firebaseFirestore.collection(Constants.POSTS).orderBy("timestamp", Query.Direction.DESCENDING).whereArrayContains("tags",objectID);
         registration = query.addSnapshotListener((queryDocumentSnapshots, e) -> {
             if (queryDocumentSnapshots != null){
                 for (DocumentChange documentChange: queryDocumentSnapshots.getDocumentChanges()){
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements PostItemClickList
                         Post object = documentChange.getDocument().toObject(Post.class);
                         if (!objectList.contains(object)){
                             objectList.add(object);
-                            adapter.notifyItemInserted(objectList.size()-1);
+                            adapter.notifyDataSetChanged();
                         }
                     }else if (documentChange.getType()==DocumentChange.Type.MODIFIED){
                         Post object = documentChange.getDocument().toObject(Post.class);

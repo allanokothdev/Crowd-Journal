@@ -53,10 +53,11 @@
         android:layout_below="@id/divider"
         android:id="@+id/recyclerView"
         android:orientation="vertical"
+        tools:itemCount="6"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/post_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/floatingActionButton"

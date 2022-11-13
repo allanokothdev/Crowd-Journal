@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dimen_5"
     android:background="@color/colorWhite"
+    android:id="@+id/container"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -74,6 +75,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:contentDescription="@string/privacypolicy"
+                        android:layout_alignParentEnd="true"
+                        app:srcCompat="@drawable/ic_more_vert_black_24dp"
+                        android:id="@+id/optionImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
                     <TextView
                         android:drawableTint="@color/colorPrimary"
                         android:drawablePadding="@dimen/dimen_5"
@@ -88,26 +97,18 @@
                         android:textSize="14sp"/>
 
                     <TextView
+                        android:layout_toStartOf="@id/optionImageView"
                         android:hint="@string/_4_min"
                         android:fontFamily="@font/open_sans_regular"
-                        android:layout_alignParentEnd="true"
                         android:id="@+id/subTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"/>
 
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-
                     <TextView
-                        android:text="@string/app_values"
+                        android:layout_below="@id/textView"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/username"
                         android:fontFamily="@font/open_sans_regular"
                         android:layout_marginStart="4dp"
                         android:id="@+id/subItemTextView"
@@ -116,7 +117,9 @@
                         android:layout_height="wrap_content"
                         android:textSize="13sp" />
 
-                </LinearLayout>
+
+                </RelativeLayout>
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
@@ -166,7 +169,7 @@
                     android:layout_marginTop="6dp"
                     android:hint="@string/nairobi_kenya"
                     android:fontFamily="@font/open_sans_regular"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorGray"
                     android:id="@+id/locationTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

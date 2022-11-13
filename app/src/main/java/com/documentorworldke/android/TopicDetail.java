@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -83,7 +84,6 @@ public class TopicDetail extends AppCompatActivity implements PostItemClickListe
         TextView textView = findViewById(R.id.textView);
         TextView subTextView = findViewById(R.id.subTextView);
         textView.setText(getString(R.string.conversations, topic));
-        dataImageView.setVisibility(View.INVISIBLE);
         subTextView.setText(R.string.united_states);
 
         app_bar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
@@ -195,16 +195,22 @@ public class TopicDetail extends AppCompatActivity implements PostItemClickListe
 
         button.setOnClickListener(view1 -> {
 
-            ArrayList<Post> postList = new ArrayList<>();
-            for (Post post: objectList){
-                if (post.getTimestamp()> startDate && post.getTimestamp() < endDate){
-                    postList.add(post);
+            try {
+                ArrayList<Post> postList = new ArrayList<>();
+                for (Post post: objectList){
+                    if (post.getTimestamp()> startDate && post.getTimestamp() < endDate){
+                        postList.add(post);
+                    }
                 }
+
+                if (postList != null){
+                    startActivity(new Intent(mContext, TimelineView.class).putExtra(Constants.OBJECT_LIST,postList));
+                } else {
+                    Toast.makeText(mContext, "No Posts with these Filters",Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
-
-            Filtered filtered = new Filtered(topic, startDate, endDate);
-            startActivity(new Intent(mContext, TimelineView.class).putExtra(Constants.OBJECT_LIST,postList));
-
         });
     }
 

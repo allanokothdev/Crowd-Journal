@@ -24,9 +24,11 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.documentorworldke.android.CreateSubComment;
+import com.documentorworldke.android.CreateComment;
 import com.documentorworldke.android.R;
+import com.documentorworldke.android.Sidebar;
 import com.documentorworldke.android.TopicDetail;
+import com.documentorworldke.android.UserProfile;
 import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.listeners.PostItemClickListener;
 import com.documentorworldke.android.models.Notification;
@@ -120,6 +122,7 @@ public class PostAdapter extends RecyclerView.Adapter{
         private final TextView subTextView;
         private final TextView subItemTextView;
 
+        private final CardView cardView;
         private final ImageView imageView;
         private final TextView summaryTextView;
         private final TextView locationTextView;
@@ -143,6 +146,7 @@ public class PostAdapter extends RecyclerView.Adapter{
             locationTextView = itemView.findViewById(R.id.locationTextView);
 
             container = itemView.findViewById(R.id.container);
+            cardView = itemView.findViewById(R.id.cardView);
             imageView = itemView.findViewById(R.id.imageView);
             textView = itemView.findViewById(R.id.textView);
             subTextView = itemView.findViewById(R.id.subTextView);
@@ -160,17 +164,17 @@ public class PostAdapter extends RecyclerView.Adapter{
             try {
                 Post post = stringList.get(position);
                 topicTextView.setText(post.getTopic());
+                cardView.setTransitionName(post.getId());
 
                 User user = post.getUser();
                 Glide.with(mContext.getApplicationContext()).load(user.getPic()).placeholder(R.drawable.placeholder).into(profileImageView);
                 textView.setText(user.getName());
                 subItemTextView.setText(mContext.getString(R.string.username,user.getUsername()));
 
-                profileCardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
+                profileCardView.setOnClickListener(v -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object", post.getUser());
+                    mContext.startActivity(new Intent(mContext, UserProfile.class).putExtras(bundle));
                 });
 
                 topicTextView.setOnClickListener(v -> mContext.startActivity(new Intent(mContext, TopicDetail.class).putExtra(Constants.OBJECT_ID,post.getTopic())));
@@ -183,12 +187,13 @@ public class PostAdapter extends RecyclerView.Adapter{
                 likeTextView.setText(String.valueOf(post.getLikes()));
                 commentTextView.setText(String.valueOf(post.getComments()));
                 subTextView.setText(PostGetTimeAgo.postGetTimeAgo(post.getTimestamp(),mContext));
-
+                cardView.setOnClickListener(v -> postItemClickListener.onPostItemClick(post,cardView));
                 shareImageView.setOnClickListener(v -> shareImage(viewToBitmap(container),post.getId()));
+
                 commentImageView.setOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("object", post);
-                    mContext.startActivity(new Intent(mContext, CreateSubComment.class).putExtras(bundle));
+                    mContext.startActivity(new Intent(mContext, CreateComment.class).putExtras(bundle));
                 });
 
                 optionImageView.setOnClickListener(view -> {
@@ -259,7 +264,9 @@ public class PostAdapter extends RecyclerView.Adapter{
                 textView.setText(user.getName());
                 subItemTextView.setText(mContext.getString(R.string.username,user.getUsername()));
                 profileCardView.setOnClickListener(v -> {
-
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object", post.getUser());
+                    mContext.startActivity(new Intent(mContext, UserProfile.class).putExtras(bundle));
                 });
 
                 topicTextView.setOnClickListener(v -> mContext.startActivity(new Intent(mContext, TopicDetail.class).putExtra(Constants.OBJECT_ID,post.getTopic())));
@@ -278,7 +285,7 @@ public class PostAdapter extends RecyclerView.Adapter{
                 commentImageView.setOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("object", post);
-                    mContext.startActivity(new Intent(mContext, CreateSubComment.class).putExtras(bundle));
+                    mContext.startActivity(new Intent(mContext, CreateComment.class).putExtras(bundle));
                 });
 
                 optionImageView.setOnClickListener(view -> {
@@ -289,7 +296,11 @@ public class PostAdapter extends RecyclerView.Adapter{
                     }
                 });
 
-                itemView.setOnClickListener(v -> postItemClickListener.onPostItemClick(post,profileCardView));
+                summaryTextView.setOnClickListener(v -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object", post);
+                    mContext.startActivity(new Intent(mContext, Sidebar.class).putExtras(bundle));
+                });
             } catch (Exception e){
                 e.printStackTrace();
             }

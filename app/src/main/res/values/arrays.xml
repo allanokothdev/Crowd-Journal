@@ -15,11 +15,14 @@
         <item>Child Abuse</item>
         <item>Climate Action</item>
         <item>Climate Change</item>
+        <item>Domestic Terrorism</item>
         <item>Domestic Violence</item>
+        <item>Defensive Use</item>
         <item>Gentrification</item>
         <item>GerryMandering</item>
         <item>Gun Violence</item>
         <item>Hate Speech</item>
+        <item>Home Invasion</item>
         <item>Homelessness</item>
         <item>Homophobia</item>
         <item>Human Trafficking</item>
@@ -27,6 +30,7 @@
         <item>Incarceration</item>
         <item>Islamophobia</item>
         <item>Incarceration</item>
+        <item>Mass Shooting</item>
         <item>Mental Health</item>
         <item>Police Violence</item>
         <item>Racial Justice</item>
@@ -47,6 +51,7 @@
         <item>Sustainability</item>
         <item>School Shooting</item>
         <item>Transphobia</item>
+        <item>Unintentional Shooting</item>
         <item>Voter Suppression</item>
         <item>Water Pollution</item>
         <item>Xenophobia</item>

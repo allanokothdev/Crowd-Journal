@@ -8,12 +8,14 @@ import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +26,11 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.documentorworldke.android.CreateComment;
 import com.documentorworldke.android.CreateSubComment;
 import com.documentorworldke.android.R;
 import com.documentorworldke.android.TopicDetail;
+import com.documentorworldke.android.UserProfile;
 import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.listeners.PostItemClickListener;
 import com.documentorworldke.android.models.Notification;
@@ -53,8 +57,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class HistoryAdapter extends RecyclerView.Adapter{
@@ -89,9 +95,9 @@ public class HistoryAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == IMAGE){
-            return new PostImageViewHolder(LayoutInflater.from(mContext).inflate(R.layout.post_item, parent, false));
+            return new PostImageViewHolder(LayoutInflater.from(mContext).inflate(R.layout.history_item, parent, false));
          } else {
-            return new PostTextViewHolder(LayoutInflater.from(mContext).inflate(R.layout.post_item, parent, false));
+            return new PostTextViewHolder(LayoutInflater.from(mContext).inflate(R.layout.history_item, parent, false));
         }
     }
 
@@ -115,14 +121,13 @@ public class HistoryAdapter extends RecyclerView.Adapter{
 
     public class PostImageViewHolder extends RecyclerView.ViewHolder{
 
-        private final TextView topicTextView;
         private final ImageView profileImageView;
         private final CardView profileCardView;
         private final TextView textView;
         private final TextView subTextView;
-        private final TextView subItemTextView;
 
         private final ImageView imageView;
+        private final CardView cardView;
         private final TextView summaryTextView;
         private final TextView locationTextView;
 
@@ -132,13 +137,13 @@ public class HistoryAdapter extends RecyclerView.Adapter{
         private final TextView likeTextView;
         private final ImageView shareImageView;
 
-        private final LinearLayout container;
+        private final RelativeLayout container;
         private final ImageView optionImageView;
 
         public PostImageViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            topicTextView = itemView.findViewById(R.id.topicTextView);
+            cardView = itemView.findViewById(R.id.cardView);
             profileImageView = itemView.findViewById(R.id.profileImageView);
             profileCardView = itemView.findViewById(R.id.profileCardView);
             summaryTextView = itemView.findViewById(R.id.summaryTextView);
@@ -148,7 +153,6 @@ public class HistoryAdapter extends RecyclerView.Adapter{
             imageView = itemView.findViewById(R.id.imageView);
             textView = itemView.findViewById(R.id.textView);
             subTextView = itemView.findViewById(R.id.subTextView);
-            subItemTextView = itemView.findViewById(R.id.subItemTextView);
             commentImageView = itemView.findViewById(R.id.commentImageView);
             commentTextView = itemView.findViewById(R.id.commentTextView);
             likeImageView = itemView.findViewById(R.id.likeImageView);
@@ -161,21 +165,17 @@ public class HistoryAdapter extends RecyclerView.Adapter{
 
             try {
                 Post post = stringList.get(position);
-                topicTextView.setText(post.getTopic());
 
                 User user = post.getUser();
                 Glide.with(mContext.getApplicationContext()).load(user.getPic()).placeholder(R.drawable.placeholder).into(profileImageView);
                 textView.setText(user.getName());
-                subItemTextView.setText(mContext.getString(R.string.username,user.getUsername()));
+                subTextView.setText(getDate(post.getTimestamp()));
 
-                profileCardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
+                profileCardView.setOnClickListener(v -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object", post.getUser());
+                    mContext.startActivity(new Intent(mContext, UserProfile.class).putExtras(bundle));
                 });
-
-                topicTextView.setOnClickListener(v -> mContext.startActivity(new Intent(mContext, TopicDetail.class).putExtra(Constants.OBJECT_ID,post.getTopic())));
 
                 Glide.with(mContext.getApplicationContext()).load(post.getImage()).placeholder(R.drawable.placeholder).into(imageView);
                 summaryTextView.setText(post.getText());
@@ -184,13 +184,12 @@ public class HistoryAdapter extends RecyclerView.Adapter{
                 fetchLikes(likeImageView,post);
                 likeTextView.setText(String.valueOf(post.getLikes()));
                 commentTextView.setText(String.valueOf(post.getComments()));
-                subTextView.setText(PostGetTimeAgo.postGetTimeAgo(post.getTimestamp(),mContext));
 
                 shareImageView.setOnClickListener(v -> shareImage(viewToBitmap(container),post.getId()));
                 commentImageView.setOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("object", post);
-                    mContext.startActivity(new Intent(mContext, CreateSubComment.class).putExtras(bundle));
+                    mContext.startActivity(new Intent(mContext, CreateComment.class).putExtras(bundle));
                 });
 
                 optionImageView.setOnClickListener(view -> {
@@ -200,6 +199,9 @@ public class HistoryAdapter extends RecyclerView.Adapter{
                         commentNormalOptions(post);
                     }
                 });
+
+                cardView.setOnClickListener(v -> postItemClickListener.onPostItemClick(post,cardView));
+
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -208,12 +210,10 @@ public class HistoryAdapter extends RecyclerView.Adapter{
 
     public class PostTextViewHolder extends RecyclerView.ViewHolder{
 
-        private final TextView topicTextView;
         private final ImageView profileImageView;
         private final CardView profileCardView;
         private final TextView textView;
         private final TextView subTextView;
-        private final TextView subItemTextView;
 
         private final ImageView imageView;
         private final TextView summaryTextView;
@@ -225,13 +225,12 @@ public class HistoryAdapter extends RecyclerView.Adapter{
         private final TextView likeTextView;
         private final ImageView shareImageView;
 
-        private final LinearLayout container;
+        private final RelativeLayout container;
         private final ImageView optionImageView;
 
         public PostTextViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            topicTextView = itemView.findViewById(R.id.topicTextView);
             profileImageView = itemView.findViewById(R.id.profileImageView);
             profileCardView = itemView.findViewById(R.id.profileCardView);
             summaryTextView = itemView.findViewById(R.id.summaryTextView);
@@ -241,7 +240,6 @@ public class HistoryAdapter extends RecyclerView.Adapter{
             imageView = itemView.findViewById(R.id.imageView);
             textView = itemView.findViewById(R.id.textView);
             subTextView = itemView.findViewById(R.id.subTextView);
-            subItemTextView = itemView.findViewById(R.id.subItemTextView);
             commentImageView = itemView.findViewById(R.id.commentImageView);
             commentTextView = itemView.findViewById(R.id.commentTextView);
             likeImageView = itemView.findViewById(R.id.likeImageView);
@@ -254,17 +252,15 @@ public class HistoryAdapter extends RecyclerView.Adapter{
 
             try {
                 Post post = stringList.get(position);
-                topicTextView.setText(post.getTopic());
 
                 User user = post.getUser();
                 Glide.with(mContext.getApplicationContext()).load(user.getPic()).placeholder(R.drawable.placeholder).into(profileImageView);
                 textView.setText(user.getName());
-                subItemTextView.setText(mContext.getString(R.string.username,user.getUsername()));
                 profileCardView.setOnClickListener(v -> {
-
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object", post.getUser());
+                    mContext.startActivity(new Intent(mContext, UserProfile.class).putExtras(bundle));
                 });
-
-                topicTextView.setOnClickListener(v -> mContext.startActivity(new Intent(mContext, TopicDetail.class).putExtra(Constants.OBJECT_ID,post.getTopic())));
 
 
                 imageView.setVisibility(View.GONE);
@@ -274,13 +270,13 @@ public class HistoryAdapter extends RecyclerView.Adapter{
                 fetchLikes(likeImageView,post);
                 likeTextView.setText(String.valueOf(post.getLikes()));
                 commentTextView.setText(String.valueOf(post.getComments()));
-                subTextView.setText(PostGetTimeAgo.postGetTimeAgo(post.getTimestamp(),mContext));
+                subTextView.setText(getDate(post.getTimestamp()));
 
                 shareImageView.setOnClickListener(v -> shareImage(viewToBitmap(container),post.getId()));
                 commentImageView.setOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("object", post);
-                    mContext.startActivity(new Intent(mContext, CreateSubComment.class).putExtras(bundle));
+                    mContext.startActivity(new Intent(mContext, CreateComment.class).putExtras(bundle));
                 });
 
                 optionImageView.setOnClickListener(view -> {
@@ -291,7 +287,7 @@ public class HistoryAdapter extends RecyclerView.Adapter{
                     }
                 });
 
-                itemView.setOnClickListener(v -> postItemClickListener.onPostItemClick(post,profileCardView));
+                summaryTextView.setOnClickListener(v -> postItemClickListener.onPostItemClick(post,profileCardView));
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -507,6 +503,12 @@ public class HistoryAdapter extends RecyclerView.Adapter{
         builder.setNegativeButton("No", (dialog, which) -> { });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private String getDate(long time){
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
+        cal.setTimeInMillis(time);
+        return DateFormat.format("EEEE, dd MMMM yyyy", cal).toString();
     }
 
 }

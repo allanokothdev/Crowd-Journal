@@ -1,11 +1,12 @@
 <resources>
     <!-- Splash &amp;-->
-    <string name="app_name">Documentor</string>
-    <string name="about_vendor">&#169; 2021 Documentor Inc</string>
+    <string name="app_name">Crowd Journal</string>
+    <string name="about_vendor">&#169; 2021 Crowd Journal Inc</string>
+    <string name="username">/&#64;%s</string>
     <string name="slogan_one">Amplifying Underrepresented Voices in Media</string>
     <string name="slogan_two">Document your World</string>
     <string name="slogan_three">We welcome you to Journal your World…</string>
-    <string name="privacypolicy">By Creating an account with Documentor, you agree to our <font color='#6698FF'> Privacy Policy</font> and <font color='#6698FF'> Terms of Service</font></string>
+    <string name="privacypolicy">By Creating an account with Crowd Journal, you agree to our <font color='#6698FF'> Privacy Policy</font> and <font color='#6698FF'> Terms of Service</font></string>
     <string name="app_values">Accountability | Credibility | Objectivity</string>
     <string name="continuewithGoogle">Continue with Google</string>
 
@@ -88,7 +89,6 @@
 
     <string name="sponsored">Sponsored By %s </string>
     <string name="identity">Identity: <font color='#6698FF'> %s </font></string>
-    <string name="username">/@%s</string>
     <string name="history">History of %s</string>
     <string name="stories">Stories \n of \n %s</string>
     <string name="conversations">%s Conversations</string>
@@ -268,5 +268,6 @@
     <string name="reply_to_this_comment">Reply to this Comment</string>
     <string name="united_states">United States</string>
     <string name="select_topics">Select Topics</string>
+    <string name="select_data_to_visualize_and_analyze">Select Data to Visualize and Analyze</string>
 
 </resources>

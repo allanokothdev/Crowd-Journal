@@ -38,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.luseen.autolinklibrary.AutoLinkMode;
 import com.luseen.autolinklibrary.AutoLinkTextView;
 
 import org.jetbrains.annotations.NotNull;
@@ -90,17 +91,21 @@ public class Sidebar extends AppCompatActivity implements View.OnClickListener {
         TextView likeTextView = findViewById(R.id.likeTextView);
         ImageView shareImageView = findViewById(R.id.shareImageView);
         profileCardView.setTransitionName(post.getId());
+        CardView cardView = findViewById(R.id.cardView);
         TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         setUpViewPager(viewPager,tabLayout);
 
         User user = post.getUser();
+        cardView.setTransitionName(post.getId());
         Glide.with(mContext.getApplicationContext()).load(user.getPic()).placeholder(R.drawable.placeholder).into(profileImageView);
         textView.setText(user.getName());
         subItemTextView.setText(mContext.getString(R.string.username,user.getUsername()));
 
         Glide.with(mContext.getApplicationContext()).load(post.getImage()).placeholder(R.drawable.placeholder).into(imageView);
         locationTextView.setText(post.getAddress());
+        summaryTextView.addAutoLinkMode(AutoLinkMode.MODE_HASHTAG);
+        summaryTextView.addAutoLinkMode(AutoLinkMode.MODE_MENTION);
         summaryTextView.setAutoLinkText(post.getText());
 
         fetchLikes(likeImageView,post);

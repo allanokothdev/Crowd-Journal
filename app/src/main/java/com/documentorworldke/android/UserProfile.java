@@ -74,8 +74,7 @@ public class UserProfile extends AppCompatActivity implements PostItemClickListe
         TextView textView = findViewById(R.id.textView);
         TextView subTextView = findViewById(R.id.subTextView);
         TextView messageTextView = findViewById(R.id.messageTextView);
-        getWindow().setStatusBarColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
-       
+
         app_bar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if ( verticalOffset < -26) {
                 if (!collapsed) {
@@ -116,13 +115,13 @@ public class UserProfile extends AppCompatActivity implements PostItemClickListe
                         Post object = documentChange.getDocument().toObject(Post.class);
                         if (!objectList.contains(object)){
                             objectList.add(object);
-                            adapter.notifyItemInserted(objectList.size()-1);
+                            adapter.notifyDataSetChanged();
                         }
                     }else if (documentChange.getType()==DocumentChange.Type.MODIFIED){
                         Post object = documentChange.getDocument().toObject(Post.class);
                         if (objectList.contains(object)){
                             objectList.set(objectList.indexOf(object),object);
-                            adapter.notifyItemChanged(objectList.indexOf(object));
+                            adapter.notifyDataSetChanged();
                         }
                     }else if (documentChange.getType()==DocumentChange.Type.REMOVED){
                         Post object = documentChange.getDocument().toObject(Post.class);
