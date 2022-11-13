@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -94,12 +96,19 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
         button = findViewById(R.id.button);
         ImageView galleryImageView = findViewById(R.id.galleryImageView);
         button.setOnClickListener(this);
-        subTextView.setOnClickListener(this);
+        subTextView.setText(getDate(selectedDate));
         galleryImageView.setOnClickListener(this);
 
         Glide.with(mContext.getApplicationContext()).load(user.getPic()).placeholder(R.drawable.placeholder).into(profileImageView);
         textView.setText(user.getName());
         grantPermissions();
+    }
+
+
+    private String getDate(long time){
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
+        cal.setTimeInMillis(time);
+        return DateFormat.format("dd MMMM yyy", cal).toString();
     }
 
 
