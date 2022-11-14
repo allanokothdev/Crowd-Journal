@@ -155,13 +155,7 @@ public class Sidebar extends AppCompatActivity implements View.OnClickListener {
 
 
     private void createNotification(String token, User user, String title, String message){
-        String notificationID = firebaseFirestore.collection(Constants.TOKEN_NOTIFICATION).document().getId();
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add(post.getId());
-        tags.add(user.getId());
-        tags.add(post.getPublisher());
-        Notification notification = new Notification(notificationID,user.getPic(),title,message,Constants.LIKES,token,post.getId(),tags);
-        firebaseFirestore.collection(Constants.TOKEN_NOTIFICATION).document(notificationID).set(notification).addOnSuccessListener(unused -> { });
+
     }
 
     private Uri saveImageToShare(Bitmap bitmap) {

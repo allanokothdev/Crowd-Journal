@@ -1,79 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:id="@+id/container"
     android:animateLayoutChanges="true"
-    android:background="@color/colorWhite"
-    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/title"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/activity_margin"
-        tools:ignore="UseCompoundDrawables">
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <TextView
-            android:id="@+id/titleTextView"
-            android:fontFamily="@font/open_sans_bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:lineSpacingExtra="8sp"
-            android:text="@string/app_name"
-            android:textColor="#4d4d4d"
-            android:textSize="18sp" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:contentInsetLeft="8dp"
+            app:contentInsetStart="8dp"
+            android:background="@color/toolbarBackground"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
-        <ImageView
-            android:contentDescription="@string/app_name"
-            android:id="@+id/moreImageView"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            app:srcCompat="@drawable/ic_more_vert_black_24dp"
-            app:tint="@color/gradient_2" />
-    </LinearLayout>
+            <ImageView
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:layout_gravity="start|center_vertical"
+                android:src="@mipmap/icon"
+                android:id="@+id/logoImageView"
+                android:contentDescription="@string/app_name"
+                android:layout_width="@dimen/dimen_30"
+                android:layout_height="@dimen/dimen_30" />
 
-    <View
-        android:id="@+id/divider"
+            <TextView
+                android:id="@+id/textView"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="20sp"
+                android:textColor="@color/toolbarTitle"
+                android:text="@string/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_marginStart="@dimen/dimen_10"
+                android:layout_marginEnd="@dimen/dimen_10"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="@string/app_name"
+                android:id="@+id/moreImageView"
+                app:srcCompat="@drawable/ic_more_vert_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@color/colorPrimary" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_gravity="bottom"
+        android:id="@+id/bottom_navigation_view"
+        app:labelVisibilityMode="unlabeled"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_separator"
-        android:layout_below="@id/title"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginRight="@dimen/activity_margin"
-        android:background="@color/bg_separator" />
+        android:layout_height="@dimen/dimen_60"
+        app:itemIconTint="@color/colorPrimary"
+        app:menu="@menu/bottom_nav_menu" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:padding="@dimen/dimen_8"
-        android:layout_below="@id/divider"
-        android:id="@+id/recyclerView"
-        android:orientation="vertical"
-        tools:itemCount="6"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/post_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
+        android:visibility="visible"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/dimen_16"
+        android:layout_marginBottom="@dimen/dimen_80"
+        app:layout_anchorGravity="bottom|end"
+        android:elevation="@dimen/dimen_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:textSize="16sp"
-        android:minHeight="56dp"
-        app:backgroundTint="@color/colorPrimary"
-        app:iconTint="@color/colorWhite"
-        android:textColor="@color/colorWhite"
-        android:fontFamily="@font/open_sans_semi_bold"
-        android:textAllCaps="false"
-        android:text="@string/create_post"
-        app:icon="@drawable/ic_assistant_blue_24dp"/>
+        android:backgroundTint="@color/blue"
+        app:tint="@color/white"
+        app:srcCompat="@drawable/ic_add_blue_24dp"
+        android:contentDescription="@string/app_name" />
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

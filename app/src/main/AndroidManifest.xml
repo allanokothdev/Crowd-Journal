@@ -41,7 +41,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="r">
-        <activity android:name=".CreatePromotion"></activity>
+        <activity android:name=".TopicList"></activity>
+        <activity android:name=".BrandList" />
+        <activity android:name=".CreateGallery" />
+        <activity android:name=".CreateBrand" />
+        <activity android:name=".SpaceProfile" />
+        <activity android:name=".ChatRoom" />
+        <activity android:name=".CreatePromotion" />
         <activity android:name=".BrandProfile" />
         <activity android:name=".ViewPicture" />
         <activity android:name=".PromotionDetail" />

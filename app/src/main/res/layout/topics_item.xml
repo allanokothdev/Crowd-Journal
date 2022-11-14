@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_20"
+    android:background="@color/colorWhite">
+
+    <TextView
+        android:text="@string/app_name"
+        android:maxLines="1"
+        android:fontFamily="@font/open_sans_semi_bold"
+        android:textColor="@color/black"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:text="@string/kenyan_conversations"
+        android:maxLines="1"
+        android:fontFamily="@font/open_sans_regular"
+        android:textColor="@color/black"
+        android:id="@+id/subTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"/>
+
+</LinearLayout >

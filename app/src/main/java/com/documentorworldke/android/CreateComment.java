@@ -106,16 +106,8 @@ public class CreateComment extends AppCompatActivity implements View.OnClickList
 
 
     private void createNotification(String token, User user, Post post){
-        String title = "New Comment";
-        String message = user.getName()+ " commented on your post";
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add(currentUserID);
-        tags.add(post.getId());
-        tags.add(post.getPublisher());
-        String notificationID = firebaseFirestore.collection(Constants.TOKEN_NOTIFICATION).document().getId();
-        Notification notification = new Notification(notificationID,user.getPic(),title,message,Constants.COMMENTS,token, post.getId(), tags);
-        firebaseFirestore.collection(Constants.TOKEN_NOTIFICATION).document(notificationID).set(notification).addOnSuccessListener(unused -> { });
-    }
+
+       }
 
     private void addUpCommentsCount(final String objectID){
         DocumentReference reference = firebaseFirestore.collection(Constants.POSTS).document(objectID);

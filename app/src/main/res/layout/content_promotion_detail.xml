@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".PromotionDetail"
+    android:fitsSystemWindows="true"
+    tools:showIn="@layout/activity_promotion_detail">
+
+    <LinearLayout
+        android:padding="@dimen/padd_10"
+        android:id="@+id/linearContentLayout"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:layout_toStartOf="@id/websiteTextView"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/open_sans_bold"
+                android:maxLines="1"
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="19.5sp" />
+
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:drawableTint="@color/colorWhite"
+                android:drawablePadding="5dp"
+                android:text="@string/visit"
+                android:id="@+id/websiteTextView"
+                android:fontFamily="@font/open_sans_semi_bold"
+                android:background="@drawable/blue_background_button"
+                android:textColor="@color/colorWhite"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/ic_link_black_24dp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/cardView"
+                app:cardCornerRadius="@dimen/padding_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/cover"
+                    android:id="@+id/brandImageView"
+                    android:scaleType="centerCrop"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:drawablePadding="@dimen/dimen_5"
+                android:drawableTint="@color/colorBlue"
+                android:drawableEnd="@drawable/round_verified_round_24"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dimen_10"
+                android:fontFamily="@font/open_sans_bold"
+                android:maxLines="1"
+                android:text="@string/app_name"
+                android:id="@+id/brandTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="16dp"
+            android:background="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans_regular"
+            android:id="@+id/summaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_marginTop="16dp"
+            android:background="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans_semi_bold"
+            android:text="@string/highlights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="8dp"
+            tools:listitem="@layout/gallery_item"
+            android:id="@+id/recyclerView"
+            app:spanCount="3"
+            tools:itemCount="9"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_marginTop="@dimen/dimen_16"
+            android:textAlignment="center"
+            android:fontFamily="@font/open_sans_semi_bold"
+            android:paddingEnd="20dp"
+            android:paddingStart="35dp"
+            android:textAllCaps="false"
+            android:textSize="19sp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/primary_background_button"
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/call_to_action" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

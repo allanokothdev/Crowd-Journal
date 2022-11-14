@@ -1,7 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.civicke.android.MainActivity">
+    tools:context="com.documentorworldke.android.MainActivity">
+
+    <item
+        android:id="@+id/action_brands"
+        android:orderInCategory="100"
+        android:title="@string/action_brands"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_order"

@@ -4,11 +4,7 @@ public class Constants {
 
     public final static String NAME = "name";
     public final static String USERNAME = "username";
-    public final static String ROLE = "role";
-    public final static String SUMMARY = "summary";
-    public final static String DATE_OF_BIRTH = "dateofbirth";
-    public final static String COUNTRY = "country";
-    public final static String IDENTITY = "identity";
+    public final static String COUNTRY = "United States";
     public final static String PIC = "pic";
     public final static String VERIFIED = "verified";
     public final static String EMAIL = "email";
@@ -69,4 +65,13 @@ public class Constants {
     public final static String POST_IMAGE = "POST_IMAGE";
 
     public final static String REPORTED = "reported";
+
+    public final static String BRANDS = "brands";
+    public final static String SPACES = "spaces";
+    public final static String CLUBS = "clubs";
+    public final static String PANEL = "panel";
+    public static final String REQUESTS = "requests";
+    public final static String GALLERY = "gallery";
+    public final static String LISTENERS = "listeners";
+    public final static String SPONSORS = "sponsors";
 }

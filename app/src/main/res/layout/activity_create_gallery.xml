@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateGallery">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_margin"
+        tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:fontFamily="@font/open_sans_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/add_9_promotion_images"
+            android:textColor="#4d4d4d"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_separator"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:background="@color/bg_separator" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        tools:itemCount="9"
+        app:spanCount="3"
+        tools:listitem="@layout/gallery_item"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_below="@id/divider"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_margin="@dimen/padding_16"
+        android:id="@+id/button"
+        android:textAllCaps="false"
+        android:text="@string/click_to_start_selection"
+        android:textSize="16sp"
+        android:background="@drawable/primary_background_button"
+        android:fontFamily="@font/open_sans_semi_bold"
+        android:layout_below="@id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"/>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/progressBar"
+        android:layout_gravity="bottom|center_horizontal"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_30"
+        app:indicatorColor="@color/colorPrimary"
+        app:indicatorName="BallPulseIndicator" />
+
+    <Button
+        android:layout_margin="@dimen/dimen_16"
+        android:layout_below="@id/button"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/dimen_24"
+        android:textSize="18sp"
+        android:fontFamily="@font/open_sans_semi_bold"
+        android:background="@drawable/primary_background_button"
+        android:textColor="@color/colorWhite"
+        android:text="@string/publish"
+        android:id="@+id/nextTextView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_60"/>
+
+</RelativeLayout>

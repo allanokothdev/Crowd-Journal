@@ -8,6 +8,43 @@
         <item>Videos</item>
     </string-array>
 
+    <string-array name="spaces">
+        <item>Speakers</item>
+        <item>Listeners</item>
+        <item>Timeline</item>
+    </string-array>
+
+    <string-array name="cta">
+        <item>Get your Tickets</item>
+        <item>Visit Us </item>
+        <item>Download</item>
+        <item>Tickets</item>
+        <item>Book</item>
+        <item>Shop</item>
+        <item>Buy</item>
+        <item>Order</item>
+        <item>Subscribe</item>
+        <item>Sign Up</item>
+        <item>Try for Free</item>
+        <item>Get Started</item>
+        <item>Learn More</item>
+        <item>Join Us</item>
+        <item>Sign Up for Free</item>
+        <item>Join Free for a Month</item>
+        <item>Give us a try</item>
+        <item>Join</item>
+        <item>Discover</item>
+        <item>Discover the Magic</item>
+        <item>Claim your Free Trial</item>
+        <item>Continue</item>
+        <item>What we Do</item>
+        <item>Follow the Majic</item>
+        <item>View Products</item>
+        <item>Create Account</item>
+        <item>Shop Now</item>
+        <item>Limited Edition</item>
+    </string-array>
+
     <string-array name="topics">
         <item>Anti Semitism</item>
         <item>Biodiversity</item>

@@ -203,23 +203,12 @@ public class CommentAdapter extends RecyclerView.Adapter{
                     imageView.setOnClickListener(v -> {
                         addLikeCount(comments.getId());
                         FirebaseDatabase.getInstance().getReference(Constants.LIKES).child(comments.getId()).child(currentUserID).setValue(true);
-                        String title = "Comment Like";
-                        String message = user.getName()+ " liked your post";
-                        createNotification(post.getToken(),user, title, message);
                     });
                 }
             }@Override public void onCancelled(@NonNull @NotNull DatabaseError error) { }
         });
     }
 
-
-    private void createNotification(String token, User user, String title, String message){
-        String notificationID = firebaseFirestore.collection(Constants.TOKEN_NOTIFICATION).document().getId();
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add(user.getId());
-        Notification notification = new Notification(notificationID,user.getPic(),title,message,Constants.LIKES,token,user.getId(),tags);
-        firebaseFirestore.collection(Constants.TOKEN_NOTIFICATION).document(notificationID).set(notification).addOnSuccessListener(unused -> { });
-    }
 
     private Uri saveImageToShare(Bitmap bitmap) {
         File imageFolder = new File(mContext.getCacheDir(), "images");
@@ -231,7 +220,7 @@ public class CommentAdapter extends RecyclerView.Adapter{
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             stream.flush();
             stream.close();
-            uri = FileProvider.getUriForFile(mContext, "com.niherw.android.fileprovider", file);
+            uri = FileProvider.getUriForFile(mContext, "com.documentorworldke.android.fileprovider", file);
         }catch (Exception e){
             Toast.makeText(mContext, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 

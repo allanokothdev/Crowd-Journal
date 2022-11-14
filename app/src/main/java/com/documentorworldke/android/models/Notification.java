@@ -1,99 +1,100 @@
 package com.documentorworldke.android.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Notification implements Serializable {
 
-    private String id;
-    private String image;
-    private String title;
-    private String message;
-    private String topic;
-    private String token;
-    private String objectID;
-    private ArrayList<String> tags;
+    private String nd;    //NOTIFICATION ID
+    private String nr;    //NOTIFICATION RECIPIENT ID
+    private String nb;    //NOTIFICATION PUBLISHER ID
+    private String no;    //NOTIFICATION OBJECT ID
+    private String ns;    //NOTIFICATION SUMMARY
+    private Integer nt;   //NOTIFICATION TYPE
+    private long nm;      //TIME
+    private boolean nk;   //NOTIFICATION CHECKED
 
-    public Notification(){ }
-
-    public Notification(String id, String image, String title, String message, String topic, String token, String objectID, ArrayList<String> tags) {
-        this.id = id;
-        this.image = image;
-        this.title = title;
-        this.message = message;
-        this.topic = topic;
-        this.token = token;
-        this.objectID = objectID;
-        this.tags = tags;
+    public Notification() {
     }
 
-    public String getId() {
-        return id;
+    public Notification(String nd, String nr, String nb, String no, String ns, Integer nt, long nm, boolean nk) {
+        this.nd = nd;
+        this.nr = nr;
+        this.nb = nb;
+        this.no = no;
+        this.ns = ns;
+        this.nt = nt;
+        this.nm = nm;
+        this.nk = nk;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getNd() {
+        return nd;
     }
 
-    public String getImage() {
-        return image;
+    public void setNd(String nd) {
+        this.nd = nd;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public String getNr() {
+        return nr;
     }
 
-    public String getTitle() {
-        return title;
+    public void setNr(String nr) {
+        this.nr = nr;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getNb() {
+        return nb;
     }
 
-    public String getMessage() {
-        return message;
+    public void setNb(String nb) {
+        this.nb = nb;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getNo() {
+        return no;
     }
 
-    public String getTopic() {
-        return topic;
+    public void setNo(String no) {
+        this.no = no;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public String getNs() {
+        return ns;
     }
 
-    public String getToken() {
-        return token;
+    public void setNs(String ns) {
+        this.ns = ns;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public Integer getNt() {
+        return nt;
     }
 
-    public String getObjectID() {
-        return objectID;
+    public void setNt(Integer nt) {
+        this.nt = nt;
     }
 
-    public void setObjectID(String objectID) {
-        this.objectID = objectID;
+    public long getNm() {
+        return nm;
     }
 
-    public ArrayList<String> getTags() {
-        return tags;
+    public void setNm(long nm) {
+        this.nm = nm;
     }
 
-    public void setTags(ArrayList<String> tags) {
-        this.tags = tags;
+    public boolean isNk() {
+        return nk;
+    }
+
+    public void setNk(boolean nk) {
+        this.nk = nk;
     }
 
     @Override
     public boolean equals(@androidx.annotation.Nullable Object obj){
-        Notification chat = (Notification)obj;
-        return id.matches(chat.getId());
+        Notification notification = (Notification) obj;
+        assert notification != null;
+        return nd.matches(notification.getNd());
     }
 }

@@ -5,148 +5,180 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.util.Pair;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.documentorworldke.android.adapters.PostAdapter;
 import com.documentorworldke.android.constants.Constants;
-import com.documentorworldke.android.listeners.PostItemClickListener;
-import com.documentorworldke.android.models.Post;
-import com.documentorworldke.android.models.Token;
+import com.documentorworldke.android.models.Topic;
 import com.documentorworldke.android.models.User;
 import com.documentorworldke.android.utils.GetUser;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.documentorworldke.android.viewpager.CustomViewPager;
+import com.documentorworldke.android.viewpager.MainViewPagerAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity implements PostItemClickListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private final Context mContext = MainActivity.this;
-    private final String TAG = this.getClass().getSimpleName();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private final String TAG = this.getClass().getSimpleName();
     private final String currentUserID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private ListenerRegistration registration;
-    private final List<Post> objectList = new ArrayList<>();
-    private PostAdapter adapter;
+    private long pressedTime;
+    private TextView textView;
+    private CustomViewPager viewPager;
+    private BottomNavigationView bottomNavigationView;
+    private final Context mContext = MainActivity.this;
     private ImageView moreImageView;
     private User user;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        user = GetUser.getUser(mContext,currentUserID);
-        ExtendedFloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
+        String[] topis = getResources().getStringArray(R.array.topics);
+
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("United States");
+        tags.add("Rwanda");
+        tags.add("Kenya");
+        tags.add("Canada");
+
+        for (String string: topis){
+            Topic topic = new Topic(string,tags);
+            FirebaseFirestore.getInstance().collection(Constants.TOPICS).document(string).set(topic);
+        }
+
+        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(this);
         moreImageView = findViewById(R.id.moreImageView);
+        textView = findViewById(R.id.textView);
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        viewPager = findViewById(R.id.viewPager);
         moreImageView.setOnClickListener(this);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        DividerItemDecoration divider = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
-        divider.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(mContext, R.drawable.posts_divider)));
-        recyclerView.addItemDecoration(divider);
-        adapter = new PostAdapter(mContext, objectList, this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-        fetchObjects(user.getCountry());
+
+        MainViewPagerAdapter viewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setOffscreenPageLimit(5);
+        viewPager.setPagingEnabled(false);
+        viewPager.addOnPageChangeListener(new CustomViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+                        textView.setText(R.string.app_name);
+                        break;
+                    case 1:
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_topics).setChecked(true);
+                        textView.setText(R.string.menu_topic);
+                        break;
+                    case 2:
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_spaces).setChecked(true);
+                        textView.setText(R.string.menu_spaces);
+                        break;
+                    case 3:
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_notification).setChecked(true);
+                        textView.setText(R.string.menu_notification);
+                        break;
+                    case 4:
+                        bottomNavigationView.getMenu().findItem(R.id.navigation_chat).setChecked(true);
+                        textView.setText(getResources().getString(R.string.menu_chat));
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         fetchUserInfo(currentUserID);
     }
 
-    private void fetchObjects(String objectID){
-        Query query = firebaseFirestore.collection(Constants.POSTS).orderBy("timestamp", Query.Direction.DESCENDING).whereArrayContains("tags",objectID);
-        registration = query.addSnapshotListener((queryDocumentSnapshots, e) -> {
-            if (queryDocumentSnapshots != null){
-                for (DocumentChange documentChange: queryDocumentSnapshots.getDocumentChanges()){
-                    if (documentChange.getType() == DocumentChange.Type.ADDED) {
-                        Post object = documentChange.getDocument().toObject(Post.class);
-                        if (!objectList.contains(object)){
-                            objectList.add(object);
-                            adapter.notifyDataSetChanged();
-                        }
-                    }else if (documentChange.getType()==DocumentChange.Type.MODIFIED){
-                        Post object = documentChange.getDocument().toObject(Post.class);
-                        if (objectList.contains(object)){
-                            objectList.set(objectList.indexOf(object),object);
-                            adapter.notifyItemChanged(objectList.indexOf(object));
-                        }
-                    }else if (documentChange.getType()==DocumentChange.Type.REMOVED){
-                        Post object = documentChange.getDocument().toObject(Post.class);
-                        if (objectList.contains(object)){
-                            objectList.remove(object);
-                            adapter.notifyItemRemoved(objectList.indexOf(object));
-                        }
-                    }
-                }
-            }
-        });
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        fetchObjects(user.getCountry());
-    }
 
+
+
+    @SuppressLint("NonConstantResourceId")
     @Override
-    public void onStop() {
-        super.onStop();
-        if (registration != null){
-            registration.remove();
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.navigation_home:
+                viewPager.setCurrentItem(0, false);
+                textView.setText(getResources().getString(R.string.app_name));
+                break;
+            case R.id.navigation_topics:
+                viewPager.setCurrentItem(1, false);
+                textView.setText(getResources().getString(R.string.menu_topic));
+                break;
+            case R.id.navigation_spaces:
+                viewPager.setCurrentItem(2, false);
+                textView.setText(getResources().getString(R.string.menu_spaces));
+                break;
+            case R.id.navigation_notification:
+                viewPager.setCurrentItem(3, false);
+                textView.setText(getResources().getString(R.string.menu_notification));
+                break;
+            case R.id.navigation_chat:
+                viewPager.setCurrentItem(4, false);
+                textView.setText(getResources().getString(R.string.menu_chat));
+                break;
         }
+        return true;
+    }
+
+
+    @Override public void onBackPressed() {
+        if (pressedTime + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else {
+            Toast.makeText(mContext, "Press Back Again to Exit", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
+
     }
 
     private void fetchUserInfo(String currentUserID){
         FirebaseFirestore.getInstance().collection(Constants.USERS).document(currentUserID).get().addOnSuccessListener(documentSnapshot -> {
             if(documentSnapshot.exists()){
-                User user = documentSnapshot.toObject(User.class);
-                assert user != null;
-                SharedPreferences.Editor editor = getSharedPreferences(Constants.USERS,Context.MODE_PRIVATE).edit();
-                editor.putString(Constants.PIC, user.getPic());
-                editor.putString(Constants.NAME, user.getName());
-                editor.putString(Constants.EMAIL, user.getEmail());
-                editor.putString(Constants.COUNTRY, user.getCountry());
-                editor.putString(Constants.TOKEN, user.getToken());
-                editor.putBoolean(Constants.VERIFICATION, user.isVerification());
-                editor.apply();
-
-                fetchToken(user);
-
-                SharedPreferences.Editor localeEditor = getSharedPreferences(Constants.COUNTRY,Context.MODE_PRIVATE).edit();
-                localeEditor.putString(Constants.COUNTRY, user.getCountry());
-                localeEditor.apply();
+                User userObject = documentSnapshot.toObject(User.class);
+                assert userObject != null;
+                user = userObject;
+                GetUser.saveUser(mContext,userObject);
+                fetchToken();
             } else {
                 startActivity(new Intent(mContext, UpdateUserProfile.class));
             }
         });
     }
 
-    private void fetchToken(User user){
+
+    private void fetchToken(){
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 String token = task.getResult();
@@ -156,9 +188,6 @@ public class MainActivity extends AppCompatActivity implements PostItemClickList
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("token",token);
                 FirebaseDatabase.getInstance().getReference(Constants.TOKEN).child(currentUserID).updateChildren(hashMap);
-
-                Token groupToken = new Token(token);
-                FirebaseDatabase.getInstance().getReference(Constants.GROUPS_TOKENS).child(user.getCountry()).child(user.getId()).setValue(groupToken);
 
                 SharedPreferences.Editor editor = getSharedPreferences(Constants.USERS,Context.MODE_PRIVATE).edit();
                 editor.putString(Constants.TOKEN, token);
@@ -174,32 +203,24 @@ public class MainActivity extends AppCompatActivity implements PostItemClickList
         });
     }
 
-    private void subscribeTopic(String topic){
-        FirebaseMessaging.getInstance().subscribeToTopic(topic).addOnCompleteListener(task -> { });
-    }
-
-    @Override
-    public void onPostItemClick(Post post, CardView cardView) {
-        Intent intent = new Intent(mContext, Sidebar.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("object",post);
-        intent.putExtras(bundle);
-        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair.create(cardView, post.getId()));
-        startActivity(intent,activityOptionsCompat.toBundle());
-    }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.moreImageView) {
+            Bundle updateBundle = new Bundle();
+            updateBundle.putSerializable("object", user);
             PopupMenu popupMen = new PopupMenu(mContext, moreImageView);
             popupMen.getMenuInflater().inflate(R.menu.menu_main, popupMen.getMenu());
             popupMen.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
+                    case R.id.action_brands:
+                        if (user != null){
+                            startActivity(new Intent(mContext, BrandList.class).putExtras(updateBundle));
+                        }
+                        break;
                     case R.id.action_order:
                         if (user != null){
-                            Bundle updateBundle = new Bundle();
-                            updateBundle.putSerializable("object", user);
                             startActivity(new Intent(mContext, UserProfile.class).putExtras(updateBundle));
                         }
                         break;

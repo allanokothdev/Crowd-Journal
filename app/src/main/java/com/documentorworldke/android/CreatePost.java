@@ -60,7 +60,7 @@ import java.util.Objects;
 public class CreatePost extends AppCompatActivity implements LocationListener, View.OnClickListener {
 
     public static final int PICK_IMAGE = 1;
-    private long selectedDate = System.currentTimeMillis();
+    private final long selectedDate = System.currentTimeMillis();
     private final String currentUserID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private final Context mContext = CreatePost.this;
@@ -68,7 +68,6 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
     private ImageView imageView;
     private CardView imageCardView;
     private TextInputEditText textInputEditText;
-    private TextView subTextView;
     private TextView button;
     private AVLoadingIndicatorView progressBar;
     private Uri mainImageUri = null;
@@ -84,9 +83,8 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
         setContentView(R.layout.activity_create_post);
 
         user = GetUser.getUser(mContext,currentUserID);
-
         progressBar = findViewById(R.id.progressBar);
-        subTextView = findViewById(R.id.subTextView);
+        TextView subTextView = findViewById(R.id.subTextView);
         ImageView profileImageView = findViewById(R.id.profileImageView);
         locationTextInputEditText = findViewById(R.id.locationTextInputEditText);
         TextView textView = findViewById(R.id.textView);
@@ -124,8 +122,8 @@ public class CreatePost extends AppCompatActivity implements LocationListener, V
                 break;
             case R.id.button:
 
-                String summary = textInputEditText.getText().toString();
-                String address = locationTextInputEditText.getText().toString();
+                String summary = textInputEditText.getText().toString().trim();
+                String address = locationTextInputEditText.getText().toString().trim();
                 progressBar.setVisibility(View.VISIBLE);
 
                 if (TextUtils.isEmpty(summary)){

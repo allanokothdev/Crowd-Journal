@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.models.User;
+import com.documentorworldke.android.utils.GetUser;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -193,17 +194,7 @@ public class UpdateUserProfile extends AppCompatActivity implements View.OnClick
 
                 firebaseFirestore.collection(Constants.USERS).document(currentUserID).set(user).addOnSuccessListener(aVoid -> {
 
-                    SharedPreferences.Editor editor = getSharedPreferences(Constants.USERS,Context.MODE_PRIVATE).edit();
-                    editor.putString(Constants.PIC, user.getPic());
-                    editor.putString(Constants.NAME, user.getName());
-                    editor.putString(Constants.USERNAME, user.getUsername());
-                    editor.putString(Constants.EMAIL, user.getEmail());
-                    editor.putString(Constants.PHONE_NUMBER, user.getPhone());
-                    editor.putString(Constants.COUNTRY, user.getCountry());
-                    editor.putString(Constants.TOKEN, user.getToken());
-                    editor.putBoolean(Constants.VERIFICATION, user.isVerification());
-                    editor.putBoolean(Constants.REPORTED, user.isReported());
-                    editor.apply();
+                    GetUser.saveUser(mContext,user);
                     progressBar.setVisibility(View.GONE);
                     finish();
                 }).addOnFailureListener(e -> {
@@ -224,17 +215,7 @@ public class UpdateUserProfile extends AppCompatActivity implements View.OnClick
                         User user = new User(currentUserID,downloadUri.toString(),name,username,email,phone,null,"",false, false);
                         firebaseFirestore.collection(Constants.USERS).document(currentUserID).set(user).addOnSuccessListener(aVoid -> {
 
-                            SharedPreferences.Editor editor = getSharedPreferences(Constants.USERS,Context.MODE_PRIVATE).edit();
-                            editor.putString(Constants.PIC, user.getPic());
-                            editor.putString(Constants.USERNAME, user.getUsername());
-                            editor.putString(Constants.NAME, user.getName());
-                            editor.putString(Constants.EMAIL, user.getEmail());
-                            editor.putString(Constants.PHONE_NUMBER, user.getPhone());
-                            editor.putString(Constants.COUNTRY, user.getCountry());
-                            editor.putString(Constants.TOKEN, user.getToken());
-                            editor.putBoolean(Constants.VERIFICATION, user.isVerification());
-                            editor.putBoolean(Constants.REPORTED, user.isReported());
-                            editor.apply();
+                            GetUser.saveUser(mContext,user);
                             progressBar.setVisibility(View.GONE);
                             finish();
 

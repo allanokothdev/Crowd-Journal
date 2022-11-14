@@ -2,7 +2,7 @@
     <!-- Splash &amp;-->
     <string name="app_name">Crowd Journal</string>
     <string name="about_vendor">&#169; 2021 Crowd Journal Inc</string>
-    <string name="username">/&#64;%s</string>
+    <string name="username">&#64;%s</string>
     <string name="slogan_one">Amplifying Underrepresented Voices in Media</string>
     <string name="slogan_two">Document your World</string>
     <string name="slogan_three">We welcome you to Journal your World…</string>
@@ -269,5 +269,19 @@
     <string name="united_states">United States</string>
     <string name="select_topics">Select Topics</string>
     <string name="select_data_to_visualize_and_analyze">Select Data to Visualize and Analyze</string>
+    <string name="visit">Visit</string>
+    <string name="call_to_action">Call to Action</string>
+    <string name="create_brand">Create Brand</string>
+    <string name="enter_brand_name">Enter Brand Name</string>
+    <string name="enter_brand_summary">Enter Brand Summary</string>
+    <string name="create_promotion">Create Promotion</string>
+    <string name="enter_promotion_title">Enter Promotion Title</string>
+    <string name="enter_summary">Enter Summary</string>
+    <string name="enter_link">Enter Link</string>
+    <string name="select_call_to_action">Select Call to Action</string>
+    <string name="add_9_promotion_images">Add 9 Promotion Images</string>
+    <string name="click_to_start_selection">Click to start selection</string>
+    <string name="action_brands">Brands</string>
+    <string name="menu_spaces">Spaces</string>
 
 </resources>

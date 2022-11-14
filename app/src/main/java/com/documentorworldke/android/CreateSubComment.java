@@ -105,16 +105,7 @@ public class CreateSubComment extends AppCompatActivity implements View.OnClickL
 
 
     private void createNotification(String token, User user, Comments comments){
-        String title = "New Comment";
-        String message = user.getName()+ " commented on your comments";
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add(currentUserID);
-        tags.add(comments.getPublisherID());
-        tags.add(comments.getId());
-        String notificationID = firebaseFirestore.collection(Constants.TOKEN_NOTIFICATION).document().getId();
-        Notification notification = new Notification(notificationID,user.getPic(),title,message,Constants.COMMENTS,token, comments.getId(), tags);
-        firebaseFirestore.collection(Constants.TOKEN_NOTIFICATION).document(notificationID).set(notification).addOnSuccessListener(unused -> { });
-    }
+         }
 
     private void addUpCommentsCount(final String objectID){
         DocumentReference reference = firebaseFirestore.collection(Constants.COMMENTS).document(objectID);

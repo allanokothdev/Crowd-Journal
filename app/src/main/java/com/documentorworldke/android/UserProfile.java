@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,6 +28,7 @@ import com.bumptech.glide.request.target.Target;
 import com.documentorworldke.android.adapters.PostAdapter;
 import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.listeners.PostItemClickListener;
+import com.documentorworldke.android.models.Chat;
 import com.documentorworldke.android.models.Post;
 import com.documentorworldke.android.models.User;
 import com.google.android.material.appbar.AppBarLayout;
@@ -43,6 +45,7 @@ import java.util.Objects;
 
 public class UserProfile extends AppCompatActivity implements PostItemClickListener, View.OnClickListener {
 
+    private final String currentUserID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private ListenerRegistration registration;
     private final Context mContext = UserProfile.this;
@@ -106,6 +109,17 @@ public class UserProfile extends AppCompatActivity implements PostItemClickListe
         textView.setText(user.getName());
         subTextView.setText(mContext.getString(R.string.username,user.getUsername()));
         fetchObjects(user.getId());
+
+        messageTextView.setOnClickListener(v -> {
+            if (user.getId().equals(currentUserID)){
+                Toast.makeText(mContext, "Can't message yourself",Toast.LENGTH_SHORT).show();
+            } else {
+                Chat chat = new Chat(user.getId(),user.getPic(),user.getName(),false,System.currentTimeMillis(),"Let's inspire conversations");
+                Bundle bundle1 = new Bundle();
+                bundle1.putSerializable(Constants.OBJECT,chat);
+                startActivity(new Intent(mContext,ChatRoom.class).putExtras(bundle1));
+            }
+        });
     }
 
 
