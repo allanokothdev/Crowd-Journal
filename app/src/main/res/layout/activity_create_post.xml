@@ -76,7 +76,7 @@
                         android:scrollHorizontally="true"
                         android:ellipsize="end"
                         android:fontFamily="@font/open_sans_semi_bold"
-                        android:id="@+id/locationTextView"
+                        android:id="@+id/subTextView"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
