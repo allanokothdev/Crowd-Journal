@@ -145,10 +145,9 @@ public class CreatePromotion extends AppCompatActivity implements View.OnClickLi
                     Promotion promotion = new Promotion(promotionID,downloadUri.toString(),title,summary,cta,web,currentUserID,brand);
                     firebaseFirestore.collection(Constants.PROMOTIONS).document(promotionID).set(promotion).addOnSuccessListener(aVoid -> {
 
-                        startActivity(new Intent(mContext, CreateGallery.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK).putExtra(Constants.OBJECT_ID,promotion.getPd()));
-                        overridePendingTransition(R.anim.scale_up,R.anim.fade_out);
+                        startActivity(new Intent(mContext, CreateGallery.class).putExtra(Constants.OBJECT_ID,promotion.getPd()));
                         progressBar.setVisibility(View.GONE);
-                        finish();
+                        finishAfterTransition();
 
                     }).addOnFailureListener(e -> {
                         progressBar.setVisibility(View.GONE);

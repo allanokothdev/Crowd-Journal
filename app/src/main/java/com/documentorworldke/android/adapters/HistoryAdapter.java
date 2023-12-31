@@ -178,7 +178,7 @@ public class HistoryAdapter extends RecyclerView.Adapter{
                 });
 
                 Glide.with(mContext.getApplicationContext()).load(post.getImage()).placeholder(R.drawable.placeholder).into(imageView);
-                summaryTextView.setText(post.getText());
+                summaryTextView.setText(post.getText().trim());
                 locationTextView.setText(post.getAddress());
 
                 fetchLikes(likeImageView,post);
@@ -264,7 +264,7 @@ public class HistoryAdapter extends RecyclerView.Adapter{
 
 
                 imageView.setVisibility(View.GONE);
-                summaryTextView.setText(post.getText());
+                summaryTextView.setText(post.getText().trim());
                 locationTextView.setText(post.getAddress());
 
                 fetchLikes(likeImageView,post);

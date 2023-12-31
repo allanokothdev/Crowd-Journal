@@ -31,13 +31,13 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/open_sans_bold"
                     android:textColor="@color/colorWhite"
-                    android:text="@string/app_name"
+                    android:text="Joe Rogan with Elon Musk"
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:maxLines="8"
+                    android:maxLines="5"
                     android:ellipsize="end"
                     android:scrollHorizontally="true"
                     android:layout_marginTop="8dp"

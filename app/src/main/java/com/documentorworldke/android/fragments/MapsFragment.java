@@ -103,7 +103,7 @@ public class MapsFragment extends Fragment implements PostItemClickListener {
     private void addMarkers(){
         for (Post post: objectList){
             LatLng latLng = new LatLng(post.getLatitude(), post.getLongitude());
-            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(post.getTopic()).snippet(post.getId()).icon(BitmapDescriptorFactory.fromResource(R.drawable.outline_location_on_24));
+            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(post.getTopic()).snippet(post.getId()).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
             listMarkers.add(markerOptions);
             googleMap.addMarker(markerOptions);
         }

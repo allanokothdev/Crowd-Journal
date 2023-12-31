@@ -24,17 +24,21 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.documentorworldke.android.adapters.HistoryAdapter;
 import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.listeners.PostItemClickListener;
 import com.documentorworldke.android.models.Filtered;
 import com.documentorworldke.android.models.Post;
+import com.documentorworldke.android.models.Promotion;
 import com.documentorworldke.android.utils.CustomDatePicker;
 import com.documentorworldke.android.utils.ScreenUtils;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
@@ -80,11 +84,12 @@ public class TopicDetail extends AppCompatActivity implements PostItemClickListe
         toolbar.setNavigationOnClickListener(v -> finishAfterTransition());
 
         AppBarLayout app_bar = findViewById(R.id.app_bar);
+        ImageView imageView = findViewById(R.id.imageView);
         ImageView dataImageView = findViewById(R.id.dataImageView);
         TextView textView = findViewById(R.id.textView);
         TextView subTextView = findViewById(R.id.subTextView);
         textView.setText(getString(R.string.conversations, topic));
-        subTextView.setText(R.string.united_states);
+        fetchPromotion("bKTBqP95BPni5rSGevav",imageView,subTextView);
 
         app_bar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if ( verticalOffset < -26) {
@@ -110,6 +115,27 @@ public class TopicDetail extends AppCompatActivity implements PostItemClickListe
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         fetchObjects(topic);
+    }
+
+    private void fetchPromotion(String objectID, ImageView imageView, TextView textView){
+        firebaseFirestore.collection(Constants.PROMOTIONS).document(objectID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){
+                    Promotion promotion = documentSnapshot.toObject(Promotion.class);
+                    Glide.with(mContext.getApplicationContext()).load(promotion.getPic()).placeholder(R.drawable.cover).into(imageView);
+                    textView.setText(mContext.getString(R.string.sponsored,promotion.getBrand().getTitle()));
+                    imageView.setOnClickListener(v -> {
+                        Intent intent = new Intent(mContext, PromotionDetail.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(Constants.OBJECT,promotion);
+                        intent.putExtras(bundle);
+                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(TopicDetail.this, Pair.create(imageView, promotion.getPd()));
+                        startActivity(intent,activityOptionsCompat.toBundle());
+                    });
+                }
+            }
+        });
     }
 
     private void fetchObjects(String objectID){

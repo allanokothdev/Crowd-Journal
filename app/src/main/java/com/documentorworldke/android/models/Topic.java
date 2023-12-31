@@ -7,13 +7,15 @@ public class Topic implements Serializable {
 
     private String td; //ID
     private ArrayList<String> tags;
+    private int rating;
 
     public Topic() {
     }
 
-    public Topic(String td, ArrayList<String> tags) {
+    public Topic(String td, ArrayList<String> tags, int rating) {
         this.td = td;
         this.tags = tags;
+        this.rating = rating;
     }
 
     public String getTd() {
@@ -30,6 +32,14 @@ public class Topic implements Serializable {
 
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     @Override

@@ -5,17 +5,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.documentorworldke.android.fragments.AgendaFragment;
 import com.documentorworldke.android.fragments.ListenerFragment;
 import com.documentorworldke.android.fragments.SponsorFragment;
 import com.documentorworldke.android.models.Space;
 
 public class ViewPagerAdapter extends FragmentStateAdapter  {
 
-    private final Space user;
+    private final Space object;
 
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, Space user) {
+    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, Space object) {
         super(fragmentActivity);
-        this.user = user;
+        this.object = object;
     }
 
     @NonNull
@@ -23,11 +24,13 @@ public class ViewPagerAdapter extends FragmentStateAdapter  {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return SponsorFragment.getInstance(user);
+                return SponsorFragment.getInstance(object);
             case 1:
-                return ListenerFragment.getInstance(user);
+                return AgendaFragment.getInstance(object);
+            case 2:
+                return ListenerFragment.getInstance(object);
         }
-        return new SponsorFragment();
+        return ListenerFragment.getInstance(object);
     }
 
     @Override

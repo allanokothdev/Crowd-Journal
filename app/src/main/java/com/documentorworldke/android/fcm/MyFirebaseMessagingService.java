@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -26,14 +25,12 @@ import com.documentorworldke.android.constants.Constants;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Map;
 import java.util.Objects;
 
 import timber.log.Timber;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-    private static final String TAG = "MyFirebaseMsgService";
     private static final int REQUEST_CODE = 0;
     private static final int FLAGS = 0;
 
@@ -43,10 +40,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         RemoteMessage.Notification notification = remoteMessage.getNotification();
         if (remoteMessage.getData().size() > 0) {
             Timber.d("Message data payload: %s", remoteMessage.getData());
-            Map<String, String> data = remoteMessage.getData();
             assert notification != null;
             try {
-                sendNotification(notification,data);
+                sendNotification(notification);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -60,23 +56,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
 
-    private void sendNotification(RemoteMessage.Notification notification, Map<String, String> data) throws IOException {
+    private void sendNotification(RemoteMessage.Notification notification) throws IOException {
         Bitmap icon = BitmapFactory.decodeStream(new URL(Objects.requireNonNull(notification.getImageUrl()).toString()).openConnection().getInputStream());
 
         Intent buttonIntent = new Intent(getBaseContext(), NotificationReceiver.class);
         buttonIntent.putExtra("notificationId", 1);
-        PendingIntent dismissIntent = PendingIntent.getBroadcast(getBaseContext(), REQUEST_CODE, buttonIntent, FLAGS);
+        PendingIntent dismissIntent = createPendingIntentGetBroadCast(this,REQUEST_CODE,buttonIntent,FLAGS);
 
-        String messageType = data.get("type");
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("objectID",messageType);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, REQUEST_CODE /* Request code */, intent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = createPendingIntentGetActivity(this,REQUEST_CODE,intent,PendingIntent.FLAG_ONE_SHOT);
 
         String channelId = Constants.CHANNEL_ID;
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.mipmap.icon)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentTitle(notification.getTitle())
                 .setLargeIcon(icon)
                 .setContentText(notification.getBody())
@@ -90,7 +86,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // Since android Oreo notification channel is needed.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(channelId, Constants.CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
             channel.setDescription(Constants.CHANNEL_DESCRIPTION);
@@ -103,5 +98,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(channel);
         }
         notificationManager.notify(Constants.NOTIFICATION_ID, notificationBuilder.build());
+    }
+
+    public static PendingIntent createPendingIntentGetActivity(Context context, int id, Intent intent, int flag) {
+        return PendingIntent.getActivity(context, id, intent, flag);
+    }
+
+    public static PendingIntent createPendingIntentGetBroadCast(Context context, int id, Intent intent, int flag) {
+        return PendingIntent.getBroadcast(context, id, intent, flag);
     }
 }

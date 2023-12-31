@@ -8,6 +8,8 @@ public class Constants {
     public final static String PIC = "pic";
     public final static String VERIFIED = "verified";
     public final static String EMAIL = "email";
+    public final static String SPACE_TITLE = "Joe Rogan with Elon Musk";
+    public final static String SPACE_SUMMARY = "Joe Rogan Experience is a podcast hosted by American comedian, presenter, and UFC color commentator Joe Rogan. It launched on December 24, 2009, on YouTube by Rogan and comedian Brian Redban, who was its sole co-host and producer until 2012 when Jamie Vernon was hired to co-produce. Vernon would eventually take over production";
 
     public final static String FROM = "from";
     public final static String TO = "to";
@@ -66,6 +68,7 @@ public class Constants {
 
     public final static String REPORTED = "reported";
 
+    public final static String AGENDAS = "agendas";
     public final static String BRANDS = "brands";
     public final static String SPACES = "spaces";
     public final static String CLUBS = "clubs";

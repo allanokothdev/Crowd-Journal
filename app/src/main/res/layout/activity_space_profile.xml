@@ -9,23 +9,21 @@
     tools:context=".SpaceProfile">
 
     <androidx.appcompat.widget.Toolbar
-        app:title="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
         app:titleTextColor="@color/toolbarTitle"
         android:background="@color/toolbarBackground">
 
-        <ImageView
-            android:layout_gravity="end|center_vertical"
-            android:layout_margin="10dp"
-            app:srcCompat="@drawable/ic_star_border_red_24dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:id="@+id/imageView"
+        <TextView
+            android:layout_marginEnd="@dimen/dimen_10"
+            android:layout_gravity="center_vertical|end"
+            android:textColor="@color/black"
+            android:fontFamily="@font/open_sans_semi_bold"
+            android:textSize="16sp"
+            android:text="Leave"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:tint="@color/colorPrimary" />
+            android:layout_height="wrap_content"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -42,8 +40,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:layout_margin="@dimen/dimen_8"
+                android:layout_alignParentTop="true"
+                android:id="@+id/textView"
+                android:hint="@string/app_name"
+                android:textColor="@color/black"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/textView"
+                android:id="@+id/recyclerView"
+                android:background="@color/colorAccent"
+                app:spanCount="5"
+                tools:itemCount="10"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/participant_item"/>
+
             <com.google.android.material.tabs.TabLayout
-                android:layout_marginTop="@dimen/dimen_5"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_below="@id/recyclerView"
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

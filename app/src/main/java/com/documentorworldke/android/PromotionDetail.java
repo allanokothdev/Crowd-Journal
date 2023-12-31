@@ -17,6 +17,7 @@
  import androidx.appcompat.app.AppCompatActivity;
  import androidx.appcompat.widget.Toolbar;
  import androidx.core.app.ActivityOptionsCompat;
+ import androidx.core.content.ContextCompat;
  import androidx.core.util.Pair;
  import androidx.recyclerview.widget.GridLayoutManager;
  import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +41,8 @@
  import com.google.firebase.database.FirebaseDatabase;
  import com.google.firebase.database.ValueEventListener;
  import com.google.firebase.database.annotations.NotNull;
+ import com.luseen.autolinklibrary.AutoLinkMode;
+ import com.luseen.autolinklibrary.AutoLinkTextView;
 
  import java.io.Serializable;
  import java.util.ArrayList;
@@ -66,9 +69,10 @@
 
          Toolbar toolbar = findViewById(R.id.toolbar);
          setSupportActionBar(toolbar);
+         toolbar.setTitleTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
          Objects.requireNonNull(getSupportActionBar()).setTitle(promotion.getTitle());
          getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_yellow_24dp);
          toolbar.setNavigationOnClickListener(v -> finishAfterTransition());
 
          AppBarLayout app_bar = findViewById(R.id.app_bar);
@@ -78,7 +82,7 @@
          ImageView brandImageView = findViewById(R.id.brandImageView);
          TextView websiteTextView = findViewById(R.id.websiteTextView);
          TextView brandTitleTextView = findViewById(R.id.brandTitleTextView);
-         TextView summaryTextView = findViewById(R.id.summaryTextView);
+         AutoLinkTextView summaryTextView = findViewById(R.id.summaryTextView);
          RecyclerView recyclerView = findViewById(R.id.recyclerView);
          websiteTextView.setOnClickListener(this);
          button.setOnClickListener(this);
@@ -101,7 +105,14 @@
          coverImageView.setTransitionName(promotion.getPd());
          Glide.with(mContext.getApplicationContext()).load(promotion.getPic()).centerCrop().dontAnimate().listener(new RequestListener<Drawable>() {@Override public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) { supportStartPostponedEnterTransition();return false; }@Override public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) { supportStartPostponedEnterTransition();return false; }}).into(coverImageView);
          nameTextView.setText(promotion.getTitle());
-         summaryTextView.setText(promotion.getSummary().trim());
+
+         summaryTextView.setMentionModeColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+         summaryTextView.setHashtagModeColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+         summaryTextView.setUrlModeColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+         summaryTextView.addAutoLinkMode(AutoLinkMode.MODE_URL);
+         summaryTextView.addAutoLinkMode(AutoLinkMode.MODE_MENTION);
+         summaryTextView.addAutoLinkMode(AutoLinkMode.MODE_HASHTAG);
+         summaryTextView.setAutoLinkText(promotion.getSummary().trim());
          button.setText(promotion.getCta());
 
          adapter = new GalleryAdapter(mContext, objectList, this);
@@ -122,7 +133,9 @@
              case R.id.button:
              case R.id.websiteTextView:
                  try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(promotion.getLink())));
+                     Intent indie = new Intent(Intent.ACTION_VIEW);
+                     indie.setData(Uri.parse(promotion.getLink()));
+                     startActivity(indie);
                  }catch (ActivityNotFoundException ignored){ }
                  break;
          }

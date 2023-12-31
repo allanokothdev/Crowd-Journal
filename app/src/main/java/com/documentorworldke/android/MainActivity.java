@@ -54,6 +54,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String[] topis = getResources().getStringArray(R.array.topics);
+
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("United States");
+        tags.add("Rwanda");
+        tags.add("Kenya");
+        tags.add("Canada");
+
+        for (String string: topis){
+            Topic topic = new Topic(string,tags,5);
+            //FirebaseFirestore.getInstance().collection(Constants.TOPICS).document(string).set(topic);
+        }
+
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(this);
         moreImageView = findViewById(R.id.moreImageView);

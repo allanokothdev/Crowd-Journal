@@ -41,13 +41,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="r">
-        <activity android:name=".TopicList"></activity>
-        <activity android:name=".BrandList" />
-        <activity android:name=".CreateGallery" />
-        <activity android:name=".CreateBrand" />
+        <activity android:name=".TopicList"/>
+        <activity android:name=".BrandList" android:theme="@style/CustomAppTheme" />
+        <activity android:name=".CreateGallery" android:theme="@style/CustomAppTheme" />
+        <activity android:name=".CreateBrand" android:theme="@style/CustomAppTheme" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".SpaceProfile" />
-        <activity android:name=".ChatRoom" />
-        <activity android:name=".CreatePromotion" />
+        <activity android:name=".ChatRoom" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".CreatePromotion" android:theme="@style/CustomAppTheme" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".BrandProfile" />
         <activity android:name=".ViewPicture" />
         <activity android:name=".PromotionDetail" />

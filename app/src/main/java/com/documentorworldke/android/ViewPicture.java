@@ -18,6 +18,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.models.Darty;
 import com.documentorworldke.android.models.Promotion;
 import com.google.android.material.tabs.TabLayout;
@@ -64,7 +65,9 @@ public class ViewPicture extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         if (view.getId()==R.id.button){
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(promotion.getLink())));
+                Intent indie = new Intent(Intent.ACTION_VIEW);
+                indie.setData(Uri.parse(promotion.getLink()));
+                startActivity(indie);
             } catch (ActivityNotFoundException ignored) {
             }
         }

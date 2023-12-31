@@ -64,6 +64,17 @@ public class SpaceFragment extends Fragment implements SpaceItemClickListener, U
         recyclerView.setAdapter(adapter);
         fetchObjects();
 
+        ArrayList<User> userList = new ArrayList<>();
+        userList.add(new User("elon","","Elon Musk","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+        userList.add(new User("elon","","Kanye West","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+        userList.add(new User("elon","","Allan Okoth","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+        userList.add(new User("elon","","David Sacks","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+        userList.add(new User("elon","","Joe Rogan","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+
+        objectList.add(new Space("one",Constants.SPACE_SUMMARY,"Business","#000000","LIVE",currentUserID,userList));
+        objectList.add(new Space("two",Constants.SPACE_SUMMARY,"Business","#0000A0","LIVE",currentUserID,userList));
+        objectList.add(new Space("three",Constants.SPACE_SUMMARY,"Business","#FFA500","LIVE",currentUserID,userList));
+
         return view;
     }
 

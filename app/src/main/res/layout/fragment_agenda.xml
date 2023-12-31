@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.recyclerview.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recyclerView"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     android:background="@color/colorWhite"
-    app:spanCount="5"
-    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:listitem="@layout/participant_item"
-    tools:context=".fragments.ListenerFragment" />
+    tools:listitem="@layout/agenda_item"
+    tools:context=".fragments.AgendaFragment" />

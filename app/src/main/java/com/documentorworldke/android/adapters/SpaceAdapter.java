@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.documentorworldke.android.R;
+import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.listeners.SpaceItemClickListener;
 import com.documentorworldke.android.listeners.UserItemClickListener;
 import com.documentorworldke.android.models.Space;
@@ -93,8 +94,8 @@ public class SpaceAdapter extends RecyclerView.Adapter{
             Space space = stringList.get(position);
             cardView.setTransitionName(space.getId());
             linearLayout.setBackgroundColor(Color.parseColor(space.getColor()));
-            textView.setText(R.string.app_name);
-            subTextView.setText(space.getTitle());
+            textView.setText(space.getTitle());
+            subTextView.setText(Constants.SPACE_SUMMARY);
             subItemTextView.setText(space.getTopic());
             locationTextView.setText(space.getDate());
             recyclerView.setAdapter(new UserAdapter(mContext, space.getPanel(),userItemClickListener));

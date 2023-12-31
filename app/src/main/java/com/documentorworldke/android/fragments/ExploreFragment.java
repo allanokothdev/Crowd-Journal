@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.documentorworldke.android.PromotionDetail;
 import com.documentorworldke.android.R;
 import com.documentorworldke.android.Sidebar;
 import com.documentorworldke.android.TopicDetail;
@@ -27,12 +28,15 @@ import com.documentorworldke.android.constants.Constants;
 import com.documentorworldke.android.listeners.PostItemClickListener;
 import com.documentorworldke.android.listeners.TopicItemClickListener;
 import com.documentorworldke.android.models.Post;
+import com.documentorworldke.android.models.Promotion;
 import com.documentorworldke.android.models.Topic;
 import com.documentorworldke.android.models.User;
 import com.documentorworldke.android.utils.GetUser;
 import com.documentorworldke.android.utils.RecyclerItemDecoration;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
@@ -65,9 +69,7 @@ public class ExploreFragment extends Fragment implements PostItemClickListener, 
 
         User user = GetUser.getUser(requireContext(),currentUserID);
 
-        ImageView coverImageView = view.findViewById(R.id.coverImageView);
         TextView textView = view.findViewById(R.id.textView);
-        Glide.with(requireActivity()).load(getImage(lowerCased(user.getCountry()))).placeholder(R.drawable.cover).into(coverImageView);
         textView.setText(getString(R.string.conversations, user.getCountry()));
 
         RecyclerView topicRecyclerView = view.findViewById(R.id.topicRecyclerView);
@@ -78,6 +80,8 @@ public class ExploreFragment extends Fragment implements PostItemClickListener, 
         topicRecyclerView.setAdapter(topicsAdapter);
         fetchTopics(user.getCountry());
 
+        ImageView imageView = view.findViewById(R.id.imageView);
+        TextView subTextView = view.findViewById(R.id.subTextView);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new PostAdapter(getContext(),objectList,this);
@@ -85,8 +89,28 @@ public class ExploreFragment extends Fragment implements PostItemClickListener, 
         RecyclerItemDecoration recyclerItemDecoration = new RecyclerItemDecoration(requireActivity(),getResources().getDimensionPixelSize(R.dimen.header_height),true,getSectionCallback(objectList));
         recyclerView.addItemDecoration(recyclerItemDecoration);
         fetchObjects(today);
+        fetchPromotion("bKTBqP95BPni5rSGevav",imageView,subTextView, user);
         return view;
     }
+
+    private void fetchPromotion(String objectID, ImageView imageView, TextView textView, User user){
+        firebaseFirestore.collection(Constants.PROMOTIONS).document(objectID).get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()){
+                Promotion promotion = documentSnapshot.toObject(Promotion.class);
+                Glide.with(requireContext().getApplicationContext()).load(promotion.getPic()).placeholder(getImage(lowerCased(user.getCountry()))).into(imageView);
+                textView.setText(requireContext().getApplicationContext().getString(R.string.sponsored,promotion.getBrand().getTitle()));
+                imageView.setOnClickListener(v -> {
+                    Intent intent = new Intent(requireContext(), PromotionDetail.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(Constants.OBJECT,promotion);
+                    intent.putExtras(bundle);
+                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), Pair.create(imageView, promotion.getPd()));
+                    startActivity(intent,activityOptionsCompat.toBundle());
+                });
+            }
+        });
+    }
+
     private String lowerCased(String location){
         return location.toLowerCase().replace(" ","");
     }
@@ -161,7 +185,7 @@ public class ExploreFragment extends Fragment implements PostItemClickListener, 
 
     private void fetchTopics(String location){
 
-        Query query = firebaseFirestore.collection(Constants.TOPICS).orderBy("td",Query.Direction.ASCENDING).whereArrayContains("tags", location);
+        Query query = firebaseFirestore.collection(Constants.TOPICS).orderBy("rating",Query.Direction.ASCENDING).whereArrayContains("tags", location).limit(10);
         registration = query.addSnapshotListener((queryDocumentSnapshots, e) -> {
             if (queryDocumentSnapshots != null){
                 for (DocumentChange documentChange: queryDocumentSnapshots.getDocumentChanges()){

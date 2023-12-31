@@ -180,7 +180,7 @@ public class PostAdapter extends RecyclerView.Adapter{
                 topicTextView.setOnClickListener(v -> mContext.startActivity(new Intent(mContext, TopicDetail.class).putExtra(Constants.OBJECT_ID,post.getTopic())));
 
                 Glide.with(mContext.getApplicationContext()).load(post.getImage()).placeholder(R.drawable.placeholder).into(imageView);
-                summaryTextView.setText(post.getText());
+                summaryTextView.setText(post.getText().trim());
                 locationTextView.setText(post.getAddress());
 
                 fetchLikes(likeImageView,post);
@@ -273,7 +273,7 @@ public class PostAdapter extends RecyclerView.Adapter{
 
 
                 imageView.setVisibility(View.GONE);
-                summaryTextView.setText(post.getText());
+                summaryTextView.setText(post.getText().trim());
                 locationTextView.setText(post.getAddress());
 
                 fetchLikes(likeImageView,post);

@@ -9,14 +9,14 @@
         android:scaleType="centerCrop"
         android:src="@drawable/cover"
         android:id="@+id/imageView"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:text="@string/app_name"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorBlack"
         android:textAlignment="center"
         android:maxLines="1"
         android:fontFamily="@font/open_sans_semi_bold"

@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"/>
 
-        <TextView
+        <com.luseen.autolinklibrary.AutoLinkTextView
             android:layout_marginTop="8dp"
             android:textColor="@color/colorBlack"
             android:textSize="16sp"

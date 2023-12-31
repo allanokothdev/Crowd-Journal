@@ -9,9 +9,9 @@
     </string-array>
 
     <string-array name="spaces">
-        <item>Speakers</item>
+        <item>Sponsors</item>
+        <item>Q &amp; A</item>
         <item>Listeners</item>
-        <item>Timeline</item>
     </string-array>
 
     <string-array name="cta">

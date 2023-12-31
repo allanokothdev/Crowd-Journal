@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -38,19 +39,33 @@ public class SpaceProfile extends AppCompatActivity implements UserItemClickList
         Space space = (Space) bundle.getSerializable(Constants.OBJECT);
         tabList = getResources().getStringArray(R.array.spaces);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_down_black_24dp);
+        toolbar.setNavigationOnClickListener(v -> finishAfterTransition());
+
+        space.getPanel().add(new User("elon","","Elon Musk","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+        space.getPanel().add(new User("elon","","Kanye West","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+        space.getPanel().add(new User("elon","","Allan Okoth","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+        space.getPanel().add(new User("elon","","David Sacks","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+        space.getPanel().add(new User("elon","","Joe Rogan","elonmusk","elonmusk@twitter.com","+250790006118","United States","elon",true,true));
+
+        TextView textView = findViewById(R.id.textView);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(mContext,4));
+        recyclerView.setLayoutManager(new GridLayoutManager(mContext,5));
         UserAdapter adapter = new UserAdapter(mContext, space.getPanel(), this);
         recyclerView.setAdapter(adapter);
         setUpViewPager(viewPager,tabLayout,space);
+        textView.setText(space.getTitle());
     }
 
     private void setUpViewPager(ViewPager2 viewPager, TabLayout tabLayout, Space space) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, space);
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(5);
+        viewPager.setOffscreenPageLimit(3);
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> tab.setText(tabList[position])).attach();
         for (int i = 0; i < tabLayout.getTabCount(); i++){
             TextView tv = (TextView) LayoutInflater.from(mContext).inflate(R.layout.custom_tab, null);
